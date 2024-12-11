@@ -18,7 +18,7 @@ public class AuthorTest {
 
             @ParameterizedTest
             @NullAndEmptySource
-            void whenConstructorIsCalled_withNullOrEmptyArgs_thenThrowIllegalArgumentException(String value) {
+            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithEmptyOrNullName(String value) {
                 Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                     Author author = new Author(value, 1900, 1990);
                 });
@@ -31,7 +31,7 @@ public class AuthorTest {
                     "'  test', 'test'",
                     "'  testing  ', 'testing'"
             })
-            void whenConstructorIsCalled_withWhiteSpaceArgs_thenRemoveThese(String values, String expected) {
+            void shouldTrimWhiteSpacesWhenConstructorIsCalledWithNameContainSpaces(String values, String expected) {
                 Author author = new Author(values, 1900, 1990);
 
                 assertEquals(expected, author.getName());
@@ -40,10 +40,11 @@ public class AuthorTest {
             @ParameterizedTest
             @ValueSource(strings = {" 123123123123123123123123123123123",
                     " test test test test test test test test test"})
-            void whenConstructorIsCalled_withMoreThan30CharactersArgs_thenThrowIllegalArgumentException(String value) {
+            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithNameLongerThan30Characters(String value) {
                 Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                     Author author = new Author(value, 1900, 1990);
                 });
+
                 assertEquals("El atributo name no puede superar los 30 caracteres", exception.getMessage());
             }
         }
@@ -53,7 +54,7 @@ public class AuthorTest {
 
             @ParameterizedTest
             @ValueSource(ints = {-1, -10, -1000})
-            void whenConstructorIsCalled_withNegativeArgs_thenThrowIllegalArgumentException(int values) {
+            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithNegativeBirthYear(int values) {
                 Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                     Author author = new Author("test", values, 1990);
                 });
@@ -63,7 +64,7 @@ public class AuthorTest {
 
             @ParameterizedTest
             @ValueSource(ints = {2050, 3000, 100000})
-            void whenConstructorIsCalled_withBirthYearMoreThanCurrentYear_thenThrowIllegalArgumentException(int values) {
+            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithBirthYearLongerThanCurrentYear(int values) {
                 Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                     Author author = new Author("test", values, 1990);
                 });

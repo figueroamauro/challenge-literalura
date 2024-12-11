@@ -1,5 +1,7 @@
 package ar.com.old.challenge_literalura.models;
 
+import java.time.LocalDate;
+
 public class Author {
     private String name;
     private int birthYear;
@@ -7,7 +9,7 @@ public class Author {
 
     public Author(String name, int birthYear, int deathYear) {
         this.name = validateName(name);
-        this.birthYear = birthYear;
+        this.birthYear = validateBirthYear(birthYear);
         this.deathYear = deathYear;
 
     }
@@ -20,6 +22,16 @@ public class Author {
             throw new IllegalArgumentException("El atributo name no puede superar los 30 caracteres");
         }
         return name.trim();
+    }
+
+    private static int validateBirthYear(int year) {
+        if (year <= 0) {
+            throw new IllegalArgumentException("la fecha de nacimiento no puede ser menor a 0");
+        }
+        if (year >= LocalDate.now().getYear()) {
+            throw new IllegalArgumentException("la fecha de nacimiento no puede ser mayor que el año actual");
+        }
+        return year;
     }
 
     public String getName() {

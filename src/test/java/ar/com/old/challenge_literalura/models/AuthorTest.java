@@ -22,7 +22,7 @@ public class AuthorTest {
                 Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                     Author author = new Author(value, 1900, 1990);
                 });
-                assertEquals("El atributo name no puede estar vacio ni ser nulo",exception.getMessage());
+                assertEquals("El nombre no puede estar vacío ni ser nulo",exception.getMessage());
             }
 
             @ParameterizedTest
@@ -45,7 +45,7 @@ public class AuthorTest {
                     Author author = new Author(value, 1900, 1990);
                 });
 
-                assertEquals("El atributo name no puede superar los 30 caracteres", exception.getMessage());
+                assertEquals("El nombre no puede superar los 30 caracteres", exception.getMessage());
             }
         }
 
@@ -59,7 +59,7 @@ public class AuthorTest {
                     Author author = new Author("test", values, 1990);
                 });
 
-                assertEquals("la fecha de nacimiento no puede ser menor a 0",exception.getMessage());
+                assertEquals("La fecha de nacimiento no puede ser menor a 0",exception.getMessage());
             }
 
             @ParameterizedTest
@@ -69,7 +69,7 @@ public class AuthorTest {
                     Author author = new Author("test", values, 1990);
                 });
 
-                assertEquals("la fecha de nacimiento no puede ser mayor que el año actual",exception.getMessage());
+                assertEquals("La fecha de nacimiento no puede ser mayor que el año actual",exception.getMessage());
             }
         }
     }

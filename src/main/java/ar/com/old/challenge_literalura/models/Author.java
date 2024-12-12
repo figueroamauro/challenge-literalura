@@ -16,20 +16,20 @@ public class Author {
 
     private static String validateName(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("El atributo name no puede estar vacio ni ser nulo");
+            throw new IllegalArgumentException("El nombre no puede estar vacío ni ser nulo");
         }
         if (name.length() > 30) {
-            throw new IllegalArgumentException("El atributo name no puede superar los 30 caracteres");
+            throw new IllegalArgumentException("El nombre no puede superar los 30 caracteres");
         }
         return name.trim();
     }
 
     private static int validateBirthYear(int year) {
         if (year <= 0) {
-            throw new IllegalArgumentException("la fecha de nacimiento no puede ser menor a 0");
+            throw new IllegalArgumentException("La fecha de nacimiento no puede ser menor a 0");
         }
         if (year >= LocalDate.now().getYear()) {
-            throw new IllegalArgumentException("la fecha de nacimiento no puede ser mayor que el año actual");
+            throw new IllegalArgumentException("La fecha de nacimiento no puede ser mayor que el año actual");
         }
         return year;
     }

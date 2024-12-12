@@ -3,6 +3,7 @@ package ar.com.old.challenge_literalura.models;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -22,7 +23,7 @@ public class AuthorTest {
                 Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                     Author author = new Author(value, 1900, 1990);
                 });
-                assertEquals("El nombre no puede estar vacío ni ser nulo",exception.getMessage());
+                assertEquals("El nombre no puede estar vacío ni ser nulo", exception.getMessage());
             }
 
             @ParameterizedTest
@@ -59,7 +60,7 @@ public class AuthorTest {
                     Author author = new Author("test", values, 1990);
                 });
 
-                assertEquals("La fecha de nacimiento no puede ser menor a 0",exception.getMessage());
+                assertEquals("La fecha de nacimiento no puede ser menor a 0", exception.getMessage());
             }
 
             @ParameterizedTest
@@ -69,8 +70,43 @@ public class AuthorTest {
                     Author author = new Author("test", values, 1990);
                 });
 
-                assertEquals("La fecha de nacimiento no puede ser mayor que el año actual",exception.getMessage());
+                assertEquals("La fecha de nacimiento no puede ser mayor que el año actual", exception.getMessage());
             }
         }
+
+        @Nested
+        class DeathYearTest {
+
+            @ParameterizedTest
+            @ValueSource(ints = {-1, -10, -1000})
+            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithNegativeDeathYear(int values) {
+                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+                    Author author = new Author("test", 1900, values);
+                });
+
+                assertEquals("La fecha de fallecimiento no puede ser menor a 0", exception.getMessage());
+            }
+
+            @ParameterizedTest
+            @ValueSource(ints = {2050, 3000, 100000})
+            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithDeathYearLongerThanCurrentYear(int values) {
+                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+                    Author author = new Author("test", 1990, values);
+                });
+
+                assertEquals("La fecha de fallecimiento no puede ser mayor que el año actual", exception.getMessage());
+            }
+
+            @Test
+            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithDeathYearIsLessThanBirthYear() {
+                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+                    Author author = new Author("test", 1990, 1980);
+                });
+
+                assertEquals("La fecha de fallecimiento no puede ser menor que la fecha de nacimiento. Use 0 si el autor aún vive", exception.getMessage());
+            }
+
+        }
+
     }
 }

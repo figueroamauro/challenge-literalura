@@ -67,6 +67,14 @@ public class Author {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = validateName(name);
+    }
+
+    public void setBirthYear(int birthYear) {
+        this.birthYear = validateBirthYear(birthYear);
+    }
+
+    public void setDeathYear(int deathYear) {
+        this.deathYear = validateDeathYear(deathYear, this.birthYear);
     }
 }

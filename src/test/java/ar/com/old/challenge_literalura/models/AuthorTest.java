@@ -4,26 +4,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
 
 public class AuthorTest {
 
     @Nested
     class ConstructorTest {
 
+        @Test
+        void shouldCreateAuthor() {
+
+            Author author = new Author("test", 1990, 2010);
+            assertEquals("test", author.getName());
+            assertEquals(1990, author.getBirthYear());
+            assertEquals(2010, author.getDeathYear());
+        }
+
         @Nested
         class NameTest {
 
             @ParameterizedTest
             @NullAndEmptySource
-            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithEmptyOrNullName(String value) {
-                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                    Author author = new Author(value, 1900, 1990);
-                });
-                assertEquals("El nombre no puede estar vacío ni ser nulo", exception.getMessage());
+            void shouldThrowExceptionCreatingAuthorWithEmptyOrNullName(String value) {
+
+                assertIllegalArgumentException(() -> new Author(value, 1900, 1990),
+                        "El nombre no puede estar vacío ni ser nulo");
             }
 
             @ParameterizedTest
@@ -32,7 +42,8 @@ public class AuthorTest {
                     "'  test', 'test'",
                     "'  testing  ', 'testing'"
             })
-            void shouldTrimWhiteSpacesWhenConstructorIsCalledWithNameContainSpaces(String values, String expected) {
+            void shouldTrimWhiteSpacesCreatingAuthorWithNameContainSpaces(String values, String expected) {
+
                 Author author = new Author(values, 1900, 1990);
 
                 assertEquals(expected, author.getName());
@@ -41,12 +52,10 @@ public class AuthorTest {
             @ParameterizedTest
             @ValueSource(strings = {" 123123123123123123123123123123123",
                     " test test test test test test test test test"})
-            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithNameLongerThan30Characters(String value) {
-                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                    Author author = new Author(value, 1900, 1990);
-                });
+            void shouldThrowExceptionCreatingAuthorWithNameLongerThan30Characters(String value) {
 
-                assertEquals("El nombre no puede superar los 30 caracteres", exception.getMessage());
+                assertIllegalArgumentException(() -> new Author(value, 1900, 1990),
+                        "El nombre no puede superar los 30 caracteres");
             }
         }
 
@@ -55,22 +64,17 @@ public class AuthorTest {
 
             @ParameterizedTest
             @ValueSource(ints = {-1, -10, -1000})
-            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithNegativeBirthYear(int values) {
-                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                    Author author = new Author("test", values, 1990);
-                });
+            void shouldThrowExceptionCreatingAuthorWithNegativeBirthYear(int values) {
 
-                assertEquals("La fecha de nacimiento no puede ser menor a 0", exception.getMessage());
+                assertIllegalArgumentException(() -> new Author("test", values, 1990),
+                        "La fecha de nacimiento no puede ser menor a 0");
             }
 
             @ParameterizedTest
             @ValueSource(ints = {2050, 3000, 100000})
-            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithBirthYearLongerThanCurrentYear(int values) {
-                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                    Author author = new Author("test", values, 1990);
-                });
-
-                assertEquals("La fecha de nacimiento no puede ser mayor que el año actual", exception.getMessage());
+            void shouldThrowExceptionCreatingAuthorWithBirthYearLongerThanCurrentYear(int values) {
+                assertIllegalArgumentException(() -> new Author("test", values, 1990),
+                        "La fecha de nacimiento no puede ser mayor que el año actual");
             }
         }
 
@@ -79,34 +83,49 @@ public class AuthorTest {
 
             @ParameterizedTest
             @ValueSource(ints = {-1, -10, -1000})
-            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithNegativeDeathYear(int values) {
-                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                    Author author = new Author("test", 1900, values);
-                });
+            void shouldThrowExceptionCreatingAuthorWithNegativeDeathYear(int values) {
 
-                assertEquals("La fecha de fallecimiento no puede ser menor a 0", exception.getMessage());
+                assertIllegalArgumentException(() -> new Author("test", 1900, values),
+                        "La fecha de fallecimiento no puede ser menor a 0");
             }
 
             @ParameterizedTest
             @ValueSource(ints = {2050, 3000, 100000})
-            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithDeathYearLongerThanCurrentYear(int values) {
-                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                    Author author = new Author("test", 1990, values);
-                });
+            void shouldThrowExceptionCreatingAuthorWithDeathYearLongerThanCurrentYear(int values) {
 
-                assertEquals("La fecha de fallecimiento no puede ser mayor que el año actual", exception.getMessage());
+                assertIllegalArgumentException(() -> new Author("test", 1990, values),
+                        "La fecha de fallecimiento no puede ser mayor que el año actual");
             }
 
             @Test
-            void shouldThrowIllegalArgumentExceptionWhenConstructorIsCalledWithDeathYearIsLessThanBirthYear() {
-                Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-                    Author author = new Author("test", 1990, 1980);
-                });
+            void shouldThrowExceptionCreatingAuthorWithDeathYearIsLessThanBirthYear() {
 
-                assertEquals("La fecha de fallecimiento no puede ser menor que la fecha de nacimiento. Use 0 si el autor aún vive", exception.getMessage());
+                assertIllegalArgumentException(() -> new Author("test", 1990, 1980),
+                        "La fecha de fallecimiento no puede ser menor que la fecha de nacimiento. Use 0 si el autor aún vive");
             }
 
         }
 
+    }
+
+    @Nested
+    class SetterAndGetterTest {
+
+        @Test
+        void shouldSetName() {
+
+            Author author = new Author("test", 1900, 2000);
+
+            author.setName("newTest");
+
+            assertEquals("newTest",author.getName());
+        }
+    }
+
+    private static void assertIllegalArgumentException(Executable executable, String message) {
+        assertEquals(message,
+                assertThrows(IllegalArgumentException.class, executable).getMessage()
+        )
+        ;
     }
 }

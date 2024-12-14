@@ -10,7 +10,7 @@ public class Author {
     public Author(String name, int birthYear, int deathYear) {
         this.name = validateName(name);
         this.birthYear = validateBirthYear(birthYear);
-        this.deathYear = validateDeathYear(deathYear,birthYear);
+        this.deathYear = validateDeathYear(deathYear, birthYear);
 
     }
 
@@ -56,5 +56,17 @@ public class Author {
 
     public String getName() {
         return this.name;
+    }
+
+    public int getBirthYear() {
+        return this.birthYear;
+    }
+
+    public int getDeathYear() {
+        return this.deathYear;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

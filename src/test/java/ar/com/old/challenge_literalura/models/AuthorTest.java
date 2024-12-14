@@ -1,11 +1,11 @@
 package ar.com.old.challenge_literalura.models;
 
+import static ar.com.old.challenge_literalura.models.TestUtils.assertIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -133,10 +133,5 @@ public class AuthorTest {
         }
     }
 
-    private static void assertIllegalArgumentException(Executable executable, String message) {
-        assertEquals(message,
-                assertThrows(IllegalArgumentException.class, executable).getMessage()
-        )
-        ;
-    }
+
 }

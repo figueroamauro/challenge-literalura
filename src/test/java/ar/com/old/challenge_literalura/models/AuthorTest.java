@@ -19,13 +19,10 @@ public class AuthorTest {
             assertEquals(1990, author.getBirthYear());
             assertEquals(2010, author.getDeathYear());
         }
-
-
     }
 
     @Nested
     class SetterAndGetterTest {
-
         Author author;
 
         @BeforeEach

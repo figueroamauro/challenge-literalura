@@ -8,7 +8,7 @@ public class Book {
     private String title;
     private final List<Author> authorList;
     private final List<String> languages;
-    private int downloadCount;
+    private Integer downloadCount;
 
     public Book(Long id, String title, int downloadCount) {
         this.authorList = new ArrayList<>();

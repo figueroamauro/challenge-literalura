@@ -1,12 +1,20 @@
 package ar.com.old.challenge_literalura.models;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "books")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @ManyToMany
     private final List<Author> authorList;
+    @ElementCollection
     private final List<String> languages;
     private Integer downloadCount;
 
@@ -16,6 +24,11 @@ public class Book {
         this.id = id;
         this.title = title;
         this.downloadCount = downloadCount;
+    }
+
+    public Book() {
+        this.authorList = new ArrayList<>();
+        this.languages = new ArrayList<>();
     }
 
     public Long getId() {
@@ -49,4 +62,6 @@ public class Book {
     public List<String> getLanguages() {
         return languages;
     }
+
+
 }

@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import ar.com.old.challenge_literalura.models.Author;
 import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,8 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @SpringBootTest
@@ -21,6 +25,12 @@ public class AuthorRepositoryTest {
     @Autowired
     AuthorRepository repository;
     static MySQLContainer<?> mysql;
+    Author expectedAuthor;
+
+    @DynamicPropertySource
+    static void dynamicProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", mysql::getJdbcUrl);
+    }
 
     @BeforeAll
     static void setup() {
@@ -29,17 +39,19 @@ public class AuthorRepositoryTest {
         mysql.start();
     }
 
-    @DynamicPropertySource
-    static void dynamicProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", mysql::getJdbcUrl);
+    @AfterAll
+    static void clean() {
+        mysql.close();
     }
 
+    @BeforeEach
+    void init() {
+        expectedAuthor = new Author("test", 1900, 2000);
+    }
 
     @Test
     @Transactional
     void shouldSaveAuthorInDDBB_save() {
-        Author expectedAuthor = new Author("test", 1900, 2000);
-        System.out.println(mysql.getJdbcUrl());
         Author author = repository.save(expectedAuthor);
         assertEquals(expectedAuthor, author);
     }

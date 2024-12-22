@@ -3,24 +3,21 @@ package ar.com.old.challenge_literalura.repositories;
 import static org.junit.jupiter.api.Assertions.*;
 
 import ar.com.old.challenge_literalura.models.Author;
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.MySQLContainer;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 @ActiveProfiles("test")
+@Transactional
 public class AuthorRepositoryTest {
     @Autowired
     AuthorRepository repository;
@@ -49,17 +46,38 @@ public class AuthorRepositoryTest {
         expectedAuthor = new Author("test", 1900, 2000);
     }
 
+    @AfterEach
+    void teardown() {
+        repository.deleteAll();
+    }
+
     @Test
-    @Transactional
-    void shouldSaveAuthorInDDBB_save() {
+    void shouldSaveAuthor() {
         Author author = repository.save(expectedAuthor);
         assertEquals(expectedAuthor, author);
     }
 
     @Test
-    @Transactional
-    void shouldReturnAEmptyList_findAll() {
+    void shouldGetAuthorById() {
+        Author author = repository.save(expectedAuthor);
+        Optional<Author> authorOpt = repository.findById(author.getId());
+        assertEquals(author.getId(), authorOpt.get().getId());
+    }
+
+    @Test
+    void shouldReturnAEmptyList() {
         List<Author> list = repository.findAll();
         assertTrue(list.isEmpty());
+    }
+
+    @Test
+    void shouldDeleteAuthorById() {
+        Author author = repository.save(expectedAuthor);
+        Long id = author.getId();
+
+        repository.deleteById(id);
+
+        Optional<Author> authorOpt = repository.findById(id);
+        assertFalse(authorOpt.isPresent());
     }
 }

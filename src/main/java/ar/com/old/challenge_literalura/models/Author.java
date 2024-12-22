@@ -24,7 +24,7 @@ public class Author {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {

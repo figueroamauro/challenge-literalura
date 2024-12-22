@@ -9,8 +9,8 @@ import static ar.com.old.challenge_literalura.models.validators.AuthorValidator.
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String name;
     private Long id;
+    private String name;
     private int birthYear;
     private int deathYear;
 
@@ -18,7 +18,9 @@ public class Author {
         this.name = validateName(name);
         this.birthYear = validateBirthYear(birthYear);
         this.deathYear = validateDeathYear(deathYear, birthYear);
+    }
 
+    public Author() {
     }
 
     public Long getId() {

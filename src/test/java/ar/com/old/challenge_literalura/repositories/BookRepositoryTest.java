@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @SpringBootTest
 @ActiveProfiles("test")
 @Import(TestContainerConfig.class)
+@Transactional
 public class BookRepositoryTest {
     @Autowired
     BookRepository repository;
@@ -23,7 +25,7 @@ public class BookRepositoryTest {
 
     @BeforeEach
     void init() {
-    testBook= new Book(null, "test", 100);
+        testBook = new Book(null, "test", 100);
     }
 
     @Test
@@ -43,4 +45,15 @@ public class BookRepositoryTest {
         assertEquals(book.getId(), result.get().getId());
     }
 
+    @Test
+    void shouldGetAllBooks() {
+        saveBooks(5);
+        assertEquals(5, repository.findAll().size());
+    }
+
+    private void saveBooks(int count) {
+        for (int i = 0; i < count; i++) {
+            repository.save(new Book(null, "test", 100));
+        }
+    }
 }

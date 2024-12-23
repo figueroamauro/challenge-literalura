@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +52,14 @@ public class BookRepositoryTest {
     void shouldGetAllBooks() {
         saveBooks(5);
         assertEquals(5, repository.findAll().size());
+    }
+
+    @Test
+    void shouldGetAllBooks_withPageable() {
+        Pageable pageable = PageRequest.of(0, 3);
+        saveBooks(5);
+        Page<Book> list = repository.findAll(pageable);
+        assertEquals(3, list.getContent().size());
     }
 
     @Test

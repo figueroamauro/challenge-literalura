@@ -51,6 +51,15 @@ public class BookRepositoryTest {
         assertEquals(5, repository.findAll().size());
     }
 
+    @Test
+    void shouldGetAllBooksByName() {
+        saveBooks(3);
+        repository.save(new Book(null, "new title", 100));
+        repository.save(new Book(null, "new title", 200));
+        assertEquals(2, repository.findAllByTitle("new title").size());
+
+    }
+
     private void saveBooks(int count) {
         for (int i = 0; i < count; i++) {
             repository.save(new Book(null, "test", 100));

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.utils.TestContainerConfig;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,19 +19,26 @@ import java.util.Optional;
 public class BookRepositoryTest {
     @Autowired
     BookRepository repository;
+    Book testBook;
+
+    @BeforeEach
+    void init() {
+    testBook= new Book(null, "test", 100);
+    }
 
     @Test
     void shouldSaveBook() {
-        Book expectedBook = new Book(null, "test", 100);
-        Book result = repository.save(expectedBook);
-        assertEquals(expectedBook, result);
+        Book result = repository.save(testBook);
+
+        assertEquals(testBook, result);
     }
 
     @Test
     void shouldGetBookById() {
-        Book expectedBook = new Book(null, "test", 100);
-        Book book = repository.save(expectedBook);
+        Book book = repository.save(testBook);
+
         Optional<Book> result = repository.findById(book.getId());
+
         assertTrue(result.isPresent());
         assertEquals(book.getId(), result.get().getId());
     }

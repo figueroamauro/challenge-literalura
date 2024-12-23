@@ -3,7 +3,7 @@ package ar.com.old.challenge_literalura.models.validators;
 import ar.com.old.challenge_literalura.models.Author;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ar.com.old.challenge_literalura.models.TestUtils.*;
+import static ar.com.old.challenge_literalura.utils.TestUtils.*;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.function.Executable;

@@ -1,4 +1,4 @@
-package ar.com.old.challenge_literalura.models;
+package ar.com.old.challenge_literalura.utils;
 
 import org.junit.jupiter.api.function.Executable;
 

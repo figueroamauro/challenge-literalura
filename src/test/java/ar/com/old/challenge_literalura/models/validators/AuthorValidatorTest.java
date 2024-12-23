@@ -1,6 +1,5 @@
 package ar.com.old.challenge_literalura.models.validators;
 
-import ar.com.old.challenge_literalura.models.Author;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static ar.com.old.challenge_literalura.models.TestUtils.*;
+import static ar.com.old.challenge_literalura.utils.TestUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

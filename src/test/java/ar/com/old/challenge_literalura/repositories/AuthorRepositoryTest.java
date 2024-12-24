@@ -49,13 +49,29 @@ public class AuthorRepositoryTest {
     }
 
     @Test
+    void shouldGetAllAuthors() {
+        saveAuthors(5);
+        List<Author> list = repository.findAll();
+        assertEquals(5, list.size());
+    }
+
+
+
+    @Test
     void shouldDeleteAuthorById() {
         Author author = repository.save(expectedAuthor);
         Long id = author.getId();
-
         repository.deleteById(id);
-
         Optional<Author> authorOpt = repository.findById(id);
         assertFalse(authorOpt.isPresent());
     }
+
+    private  void saveAuthors(int count) {
+        for (int i = 0; i < count; i++) {
+            repository.save(new Author("test", 1990, 2000));
+        }
+    }
+
 }
+
+

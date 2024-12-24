@@ -8,6 +8,9 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +59,13 @@ public class AuthorRepositoryTest {
     }
 
 
+    @Test
+    void shouldGetAllAuthors_withPageable() {
+        saveAuthors(5);
+        Pageable pageable = PageRequest.of(0, 3);
+        Page<Author> pageList = repository.findAll(pageable);
+        assertEquals(3, pageList.getContent().size());
+    }
 
     @Test
     void shouldDeleteAuthorById() {

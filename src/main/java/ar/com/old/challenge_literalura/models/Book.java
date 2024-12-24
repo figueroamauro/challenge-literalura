@@ -12,7 +12,12 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
     private final List<Author> authorList;
     @ElementCollection
     private final List<String> languages;
@@ -66,5 +71,16 @@ public class Book {
 
     public void addAuthor(Author author) {
         this.authorList.add(author);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                       "id=" + id +
+                       ", title='" + title + '\'' +
+                       ", authorList=" + authorList +
+                       ", languages=" + languages +
+                       ", downloadCount=" + downloadCount +
+                       '}';
     }
 }

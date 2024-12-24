@@ -2,6 +2,7 @@ package ar.com.old.challenge_literalura.repositories;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.utils.TestContainerConfig;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,16 +35,22 @@ public class BookRepositoryTest {
     @Test
     void shouldSaveBook() {
         Book result = repository.save(testBook);
-
         assertEquals(testBook, result);
+    }
+
+
+    @Test
+    void shouldSaveBook_withAuthorInList() {
+        testBook.getAuthorList().add(new Author("test", 1900, 2000));
+        Book result = repository.save(testBook);
+        assertEquals(testBook, result);
+        System.out.println(result.getAuthorList());
     }
 
     @Test
     void shouldGetBookById() {
         Book book = repository.save(testBook);
-
         Optional<Book> result = repository.findById(book.getId());
-
         assertTrue(result.isPresent());
         assertEquals(book.getId(), result.get().getId());
     }

@@ -54,4 +54,14 @@ public class Author {
     public void setDeathYear(int deathYear) {
         this.deathYear = validateDeathYear(deathYear, this.birthYear);
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                       "id=" + id +
+                       ", name='" + name + '\'' +
+                       ", birthYear=" + birthYear +
+                       ", deathYear=" + deathYear +
+                       '}';
+    }
 }

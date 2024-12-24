@@ -67,7 +67,8 @@ public class BookTest {
 
         @Test
         void shouldAddLanguageToList(){
-
+            book.addLanguage("ESP");
+            assertEquals(1, book.getLanguages().size());
         }
     }
 

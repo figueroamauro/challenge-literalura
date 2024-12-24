@@ -83,4 +83,8 @@ public class Book {
                        ", downloadCount=" + downloadCount +
                        '}';
     }
+
+    public void addLanguage(String language) {
+        this.languages.add(language);
+    }
 }

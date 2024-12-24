@@ -75,7 +75,11 @@ public class BookRepositoryTest {
         repository.save(new Book(null, "new title", 100));
         repository.save(new Book(null, "new title", 200));
         assertEquals(2, repository.findAllByTitle("new title").size());
+    }
 
+    @Test
+    void shouldGetAllBooksByLanguage() {
+        //TODO implementar logica despues de agregar logica para agregar lenguajes a un libro
     }
 
     private void saveBooks(int count) {

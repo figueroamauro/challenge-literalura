@@ -57,4 +57,17 @@ public class BookTest {
         }
     }
 
+    @Nested
+    class AuthorListTest {
+
+        @Test
+        void shouldAddAuthorToList() {
+            Author author = new Author("test", 1990, 2010);
+            Book book = new Book(null, "test", 100);
+
+            book.addAuthor(author);
+            assertEquals(1, book.getAuthorList().size());
+        }
+    }
+
 }

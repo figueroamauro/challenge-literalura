@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.utils.TestContainerConfig;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -62,10 +63,10 @@ public class AuthorRepositoryTest {
     @Test
     void shouldGetAllAuthors_withPageable() {
         saveAuthors(5);
-        Pageable pageable = PageRequest.of(0, 3);
-        Page<Author> pageList = repository.findAll(pageable);
+        Page<Author> pageList = repository.findAll(getPageable(3));
         assertEquals(3, pageList.getContent().size());
     }
+
 
     @Test
     void shouldDeleteAuthorById() {
@@ -81,6 +82,10 @@ public class AuthorRepositoryTest {
             repository.save(new Author("test", 1990, 2000));
         }
     }
+    private  Pageable getPageable(int size) {
+        return PageRequest.of(0, size);
+    }
+
 
 }
 

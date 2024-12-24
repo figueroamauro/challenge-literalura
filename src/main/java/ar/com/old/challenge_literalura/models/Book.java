@@ -64,4 +64,7 @@ public class Book {
     }
 
 
+    public void addAuthor(Author author) {
+        this.authorList.add(author);
+    }
 }

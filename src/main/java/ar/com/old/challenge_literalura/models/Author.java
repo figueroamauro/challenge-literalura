@@ -14,7 +14,8 @@ public class Author {
     private int birthYear;
     private int deathYear;
 
-    public Author(String name, int birthYear, int deathYear) {
+    public Author(Long id, String name, int birthYear, int deathYear) {
+        this.id = id; //TODO validar id
         this.name = validateName(name);
         this.birthYear = validateBirthYear(birthYear);
         this.deathYear = validateDeathYear(deathYear, birthYear);

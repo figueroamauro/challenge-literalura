@@ -56,7 +56,7 @@ public class BookTest {
 
         @Test
         void shouldAddAuthorToList() {
-            Author author = new Author("test", 1990, 2010);
+            Author author = new Author(1L,"test", 1990, 2010);
             book.addAuthor(author);
             assertEquals(1, book.getAuthorList().size());
         }

@@ -14,7 +14,7 @@ public class AuthorTest {
 
         @Test
         void shouldCreateAuthor() {
-            Author author = new Author("test", 1990, 2010);
+            Author author = new Author(1L,"test", 1990, 2010);
             assertEquals("test", author.getName());
             assertEquals(1990, author.getBirthYear());
             assertEquals(2010, author.getDeathYear());
@@ -27,7 +27,7 @@ public class AuthorTest {
 
         @BeforeEach
         void init() {
-            author = new Author("test", 1900, 2000);
+            author = new Author(1L,"test", 1900, 2000);
         }
 
         @Test

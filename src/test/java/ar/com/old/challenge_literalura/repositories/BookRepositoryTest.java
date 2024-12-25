@@ -41,7 +41,7 @@ public class BookRepositoryTest {
 
     @Test
     void shouldSaveBook_withAuthorInList() {
-        testBook.getAuthorList().add(new Author("test", 1900, 2000));
+        testBook.getAuthorList().add(new Author(1L,"test", 1900, 2000));
         Book result = repository.save(testBook);
         assertEquals(testBook, result);
         System.out.println(result.getAuthorList());

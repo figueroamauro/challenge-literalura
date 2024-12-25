@@ -29,7 +29,7 @@ public class AuthorRepositoryTest {
 
     @BeforeEach
     void init() {
-        expectedAuthor = new Author("test", 1900, 2000);
+        expectedAuthor = new Author(1L,"test", 1900, 2000);
     }
 
 
@@ -79,7 +79,7 @@ public class AuthorRepositoryTest {
 
     private  void saveAuthors(int count) {
         for (int i = 0; i < count; i++) {
-            repository.save(new Author("test", 1990, 2000));
+            repository.save(new Author(1L,"test", 1990, 2000));
         }
     }
     private  Pageable getPageable(int size) {

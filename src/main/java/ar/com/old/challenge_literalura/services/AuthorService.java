@@ -6,12 +6,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorService {
-    AuthorRepository repository;
+    private final AuthorRepository repository;
     public AuthorService(AuthorRepository repository) {
         this.repository = repository;
     }
 
     public Author saveAuthor(Author author) {
+        if (author == null) {
+            throw new IllegalArgumentException("El autor no puede ser nulo");
+        }
         return repository.save(author);
     }
 }

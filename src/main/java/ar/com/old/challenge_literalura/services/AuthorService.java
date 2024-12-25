@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthorService {
@@ -25,5 +26,10 @@ public class AuthorService {
     public List<Author> getAllAuthors() {
         Pageable pageable = PageRequest.of(0, 10);
         return repository.findAll(pageable).getContent();
+    }
+
+    public Author getAuthorById(Long id) {
+        Optional<Author> author = repository.findById(id);
+        return author.get();
     }
 }

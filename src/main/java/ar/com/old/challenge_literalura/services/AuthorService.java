@@ -30,6 +30,10 @@ public class AuthorService {
 
     public Author getAuthorById(Long id) {
         Optional<Author> author = repository.findById(id);
-        return author.get();
+        if (author.isPresent()) {
+            return author.get();
+        } else {
+            throw new IllegalArgumentException("El autor con el id " + id + " no se encuentra registrado");
+        }
     }
 }

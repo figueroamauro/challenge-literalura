@@ -70,6 +70,15 @@ public class AuthorServiceTest {
         verify(repository).findById(1L);
     }
 
+    @Test
+    void shouldFailGettingAuthor_withInvalidId() {
+        long id = 10L;
+        when(repository.findById(id)).thenReturn(Optional.empty());
+        Executable executable = ()->service.getAuthorById(id);
+        assertIllegalArgumentException(executable,"El autor con el id "+id + " no se encuentra registrado" );
+        verify(repository).findById(id);
+    }
+
 
     private List<Author> getCompleteList() {
         List<Author> tmpList = new ArrayList<>();

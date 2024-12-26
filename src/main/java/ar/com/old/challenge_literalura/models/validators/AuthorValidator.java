@@ -4,6 +4,13 @@ import java.time.LocalDate;
 
 public abstract class AuthorValidator {
 
+    public static Long validateId(Long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("El id no puede ser negativo");
+        }
+        return id;
+    }
+
     public static String validateName(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede estar vacío ni ser nulo");
@@ -43,4 +50,5 @@ public abstract class AuthorValidator {
 
         return deathYear;
     }
+
 }

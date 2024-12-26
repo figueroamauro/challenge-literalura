@@ -19,7 +19,6 @@ public class BookValidatorTest {
     @Nested
     class idTest {
 
-
         @ParameterizedTest
         @ValueSource(longs = {-1L, -100L, -1000L})
         void shouldThrowException_whenIdIsNegative(Long id) {

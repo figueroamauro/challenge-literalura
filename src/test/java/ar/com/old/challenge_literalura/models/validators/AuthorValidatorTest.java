@@ -15,6 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AuthorValidatorTest {
 
     @Nested
+    class idTest {
+
+        @ParameterizedTest
+        @ValueSource(longs = {-1L, -100L, -1000L})
+        void shouldThrowException_whenIdIsNegative(Long id) {
+            assertIllegalArgumentException(getValidateIdExecutable(id), "El id no puede ser negativo");
+        }
+    }
+
+    @Nested
     class NameTest {
 
         @ParameterizedTest
@@ -103,6 +113,9 @@ public class AuthorValidatorTest {
     }
 
 
+    private static Executable getValidateIdExecutable(Long id) {
+        return () -> AuthorValidator.validateId(id);
+    }
     private static Executable getValidateName(String name) {
         return () -> AuthorValidator.validateName(name);
     }

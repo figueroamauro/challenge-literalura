@@ -41,18 +41,18 @@ public class BookServiceTest {
     }
 
     @Test
-    void shouldFailSavingBookAndThrowException_withNullBook(){
+    void shouldFailSavingBookAndThrowException_withNullBook() {
         Executable executable = () -> service.saveBook(null);
-        assertIllegalArgumentException(executable,"El libro no puede ser nulo");
-        verify(repository,never()).save(null);
+        assertIllegalArgumentException(executable, "El libro no puede ser nulo");
+        verify(repository, never()).save(null);
     }
 
     @Test
-    void shouldFailSavingBookAndThrowException_whenBookAlreadyExists(){
+    void shouldFailSavingBookAndThrowException_whenBookAlreadyExists() {
         when(repository.findByTitle("test")).thenReturn(Optional.of(new Book(3L, "test", 200)));
         Executable executable = () -> service.saveBook(bookToSave);
-        assertIllegalArgumentException(executable,"El libro ya se encuentra registrado");
-        verify(repository,never()).save(bookToSave);
+        assertIllegalArgumentException(executable, "El libro ya se encuentra registrado");
+        verify(repository, never()).save(bookToSave);
         verify(repository).findByTitle("test");
     }
 
@@ -60,9 +60,16 @@ public class BookServiceTest {
     void shouldGetBookById() {
         when(repository.findById(1L)).thenReturn(Optional.of(bookSaved));
         Book result = service.getBookById(1L);
-        assertEquals(1L,result.getId());
+        assertEquals(1L, result.getId());
         verify(repository).findById(1L);
     }
 
-
+    @Test
+    void shouldFailGettingBookAndThrowException_withInvalidId() {
+        long id = 10L;
+        when(repository.findById(id)).thenReturn(Optional.empty());
+        Executable executable = () -> service.getBookById(id);
+        assertIllegalArgumentException(executable, "El libro con id " + id + " no se encuentra registrado");
+        verify(repository).findById(10L);
+    }
 }

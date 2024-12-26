@@ -20,8 +20,13 @@ public class BookService {
 
     public Book getBookById(long id) {
         Optional<Book> book = repository.findById(id);
-        return book.get();
+        if (book.isEmpty()) {
+            throw new IllegalArgumentException("El libro con id " + id + " no se encuentra registrado");
+        }else {
+            return book.get();
+        }
     }
+
 
     private void validateIfExist(Book book) {
         if (getByTitle(book).isPresent()) {

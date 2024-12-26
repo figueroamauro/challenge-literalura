@@ -47,7 +47,7 @@ public class AuthorServiceTest {
     }
 
     @Test
-    void shouldThrowException_withNullAuthor() {
+    void shouldFailSavingAuthorAndThrowException_withNullAuthor() {
         Executable executable = () -> service.saveAuthor(null);
         assertIllegalArgumentException(executable, "El autor no puede ser nulo");
         verify(repository, never()).save(authorToSave);

@@ -1,5 +1,7 @@
 package ar.com.old.challenge_literalura.services;
 
+import static ar.com.old.challenge_literalura.utils.TestUtils.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import ar.com.old.challenge_literalura.models.Book;
@@ -9,7 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
+import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 public class BookServiceTest {
     @Autowired
@@ -30,7 +35,24 @@ public class BookServiceTest {
     void shouldSaveBook() {
         when(repository.save(bookToSave)).thenReturn(bookSaved);
         Book result = service.saveBook(bookToSave);
-        assertEquals(result.getId(), bookSaved.getId());
+        assertNotNull(result);
+        assertEquals(1L, result.getId());
+        assertEquals("test", result.getTitle());
+    }
 
+    @Test
+    void shouldFailSavingBookAndThrowException_withNullBook(){
+        Executable executable = () -> service.saveBook(null);
+        assertIllegalArgumentException(executable,"El libro no puede ser nulo");
+        verify(repository,never()).save(null);
+    }
+
+    @Test
+    void shouldFailSavingBookAndThrowException_whenBookAlreadyExists(){
+        when(repository.findByTitle("test")).thenReturn(Optional.of(new Book(3L, "test", 200)));
+        Executable executable = () -> service.saveBook(bookToSave);
+        assertIllegalArgumentException(executable,"El libro ya se encuentra registrado");
+        verify(repository,never()).save(bookToSave);
+        verify(repository).findByTitle("test");
     }
 }

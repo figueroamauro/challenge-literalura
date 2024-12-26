@@ -41,7 +41,7 @@ public class BookRepositoryTest {
 
     @Test
     void shouldSaveBook_withAuthorInList() {
-        testBook.getAuthorList().add(new Author(1L,"test", 1900, 2000));
+        testBook.getAuthorList().add(new Author(null,"test", 1900, 2000));
         Book result = repository.save(testBook);
         assertEquals(testBook, result);
         System.out.println(result.getAuthorList());
@@ -70,11 +70,13 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void shouldGetAllBooksByName() {
+    void shouldGetBooksByName() {
         saveBooks(3);
         repository.save(new Book(null, "new title", 100));
-        repository.save(new Book(null, "new title", 200));
-        assertEquals(2, repository.findAllByTitle("new title").size());
+        Optional<Book> result = repository.findByTitle("new title");
+        assertNotNull(result);
+        assertNotNull(result.get().getId());
+        assertEquals("new title", result.get().getTitle());
     }
 
     @Test

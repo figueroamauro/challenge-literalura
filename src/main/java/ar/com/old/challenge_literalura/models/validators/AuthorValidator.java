@@ -5,6 +5,9 @@ import java.time.LocalDate;
 public abstract class AuthorValidator {
 
     public static Long validateId(Long id) {
+        if (id == null) {
+            return null;
+        }
         if (id < 0) {
             throw new IllegalArgumentException("El id no puede ser negativo");
         }

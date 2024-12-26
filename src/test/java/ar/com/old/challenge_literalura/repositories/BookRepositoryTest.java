@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -82,11 +83,13 @@ public class BookRepositoryTest {
     @Test
     void shouldGetAllBooksByLanguage() {
         saveBooksWithLanguages(5);
-        Book result = repository.findAllByLanguages("lang1");
-        assertEquals("lang1", result.getLanguages().get(0));
+        List<Book> result = repository.findAllByLanguages("lang1");
+        assertEquals("lang1", result.get(0).getLanguages().get(0));
+        assertEquals(1, result.size());
         assertNotNull(result);
     }
 
+    //--------- UTILITY METHODS ----------
     private void saveBooks(int count) {
         for (int i = 0; i < count; i++) {
             repository.save(new Book(null, "test", 100));

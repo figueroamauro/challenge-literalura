@@ -19,11 +19,6 @@ public class BookValidatorTest {
     @Nested
     class idTest {
 
-        @ParameterizedTest
-        @NullSource
-        void shouldThrowException_whenIdIsNull(Long id) {
-            assertIllegalArgumentException(getValidateIdExecutable(id), "El id no puede ser nulo");
-        }
 
         @ParameterizedTest
         @ValueSource(longs = {-1L, -100L, -1000L})

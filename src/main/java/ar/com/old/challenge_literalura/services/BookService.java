@@ -18,6 +18,11 @@ public class BookService {
         return repository.save(book);
     }
 
+    public Book getBookById(long id) {
+        Optional<Book> book = repository.findById(id);
+        return book.get();
+    }
+
     private void validateIfExist(Book book) {
         if (getByTitle(book).isPresent()) {
             throw new IllegalArgumentException("El libro ya se encuentra registrado");
@@ -33,4 +38,6 @@ public class BookService {
     private Optional<Book> getByTitle(Book book) {
         return repository.findByTitle(book.getTitle());
     }
+
+
 }

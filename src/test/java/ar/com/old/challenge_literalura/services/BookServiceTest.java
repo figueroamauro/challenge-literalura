@@ -55,4 +55,14 @@ public class BookServiceTest {
         verify(repository,never()).save(bookToSave);
         verify(repository).findByTitle("test");
     }
+
+    @Test
+    void shouldGetBookById() {
+        when(repository.findById(1L)).thenReturn(Optional.of(bookSaved));
+        Book result = service.getBookById(1L);
+        assertEquals(1L,result.getId());
+        verify(repository).findById(1L);
+    }
+
+
 }

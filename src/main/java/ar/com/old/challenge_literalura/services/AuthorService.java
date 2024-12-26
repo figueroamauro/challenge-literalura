@@ -2,7 +2,6 @@ package ar.com.old.challenge_literalura.services;
 
 import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.repositories.AuthorRepository;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

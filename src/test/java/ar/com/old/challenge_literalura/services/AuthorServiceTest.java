@@ -79,7 +79,7 @@ public class AuthorServiceTest {
         verify(repository).findById(id);
     }
 
-
+    //--------- UTILITY METHODS ----------
     private List<Author> getCompleteList() {
         List<Author> tmpList = new ArrayList<>();
         for (int i = 0; i < 15; i++) {

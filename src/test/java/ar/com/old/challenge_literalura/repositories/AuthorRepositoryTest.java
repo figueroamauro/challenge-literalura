@@ -77,6 +77,7 @@ public class AuthorRepositoryTest {
         assertFalse(authorOpt.isPresent());
     }
 
+    //--------- UTILITY METHODS ----------
     private  void saveAuthors(int count) {
         for (int i = 0; i < count; i++) {
             repository.save(new Author(1L,"test", 1990, 2000));

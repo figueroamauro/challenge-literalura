@@ -112,7 +112,7 @@ public class AuthorValidatorTest {
         }
     }
 
-
+    //--------- UTILITY METHODS ----------
     private static Executable getValidateIdExecutable(Long id) {
         return () -> AuthorValidator.validateId(id);
     }

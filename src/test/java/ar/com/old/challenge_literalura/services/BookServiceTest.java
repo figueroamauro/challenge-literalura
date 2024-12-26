@@ -4,7 +4,6 @@ import static ar.com.old.challenge_literalura.utils.TestUtils.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -91,6 +90,8 @@ public class BookServiceTest {
         verify(repository).findAll(Pageable.ofSize(10));
     }
 
+
+    //--------- UTILITY METHODS ----------
     private Page<Book> toPage(List<Book> list, Pageable pageable) {
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), list.size());

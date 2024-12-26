@@ -89,6 +89,15 @@ public class BookRepositoryTest {
         assertNotNull(result);
     }
 
+    @Test
+    void shouldDeleteBook() {
+        Book book = repository.save(testBook);
+        long id = book.getId();
+        repository.deleteById(id);
+        Optional<Book> result = repository.findById(id);
+       assertTrue(result.isEmpty());
+    }
+
     //--------- UTILITY METHODS ----------
     private void saveBooks(int count) {
         for (int i = 0; i < count; i++) {
@@ -101,7 +110,6 @@ public class BookRepositoryTest {
             Book book =new Book(null, "test", 100);
             book.addLanguage("lang"+i);
             repository.save(book);
-
         }
     }
 }

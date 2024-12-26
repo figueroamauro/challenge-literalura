@@ -104,6 +104,7 @@ public class BookValidatorTest {
         }
     }
 
+    //--------- UTILITY METHODS ----------
     private static Executable getValidateIdExecutable(Long id) {
         return () -> BookValidator.validateId(id);
     }

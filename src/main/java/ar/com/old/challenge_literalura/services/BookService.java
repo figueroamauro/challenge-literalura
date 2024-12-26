@@ -1,6 +1,5 @@
 package ar.com.old.challenge_literalura.services;
 
-import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
 import org.springframework.data.domain.Pageable;

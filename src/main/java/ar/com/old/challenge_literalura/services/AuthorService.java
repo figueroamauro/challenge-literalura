@@ -24,8 +24,7 @@ public class AuthorService {
     }
 
     public List<Author> getAllAuthors() {
-        Pageable pageable = PageRequest.of(0, 10);
-        return repository.findAll(pageable).getContent();
+        return repository.findAll(Pageable.ofSize(10)).getContent();
     }
 
     public Author getAuthorById(Long id) {

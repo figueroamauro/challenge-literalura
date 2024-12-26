@@ -4,6 +4,7 @@ import static ar.com.old.challenge_literalura.utils.TestUtils.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,12 @@ import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class BookServiceTest {
@@ -22,6 +28,7 @@ public class BookServiceTest {
     Book bookSaved;
     Book bookToSave;
     BookService service;
+    List<Book> list = new ArrayList<>();
 
     @BeforeEach
     void init() {
@@ -29,6 +36,7 @@ public class BookServiceTest {
         bookSaved = new Book(1L, "test", 100);
         repository = mock(BookRepository.class);
         service = new BookService(repository);
+        list = getCompleteList();
     }
 
     @Test
@@ -38,6 +46,7 @@ public class BookServiceTest {
         assertNotNull(result);
         assertEquals(1L, result.getId());
         assertEquals("test", result.getTitle());
+        verify(repository).save(bookToSave);
     }
 
     @Test
@@ -72,4 +81,29 @@ public class BookServiceTest {
         assertIllegalArgumentException(executable, "El libro con id " + id + " no se encuentra registrado");
         verify(repository).findById(10L);
     }
+
+    @Test
+    void shouldGetAMaximumOf10Books() {
+        when(repository.findAll(Pageable.ofSize(10)))
+                .thenReturn(toPage(list, Pageable.ofSize(10)));
+        List<Book> authorList = service.getAllBooks();
+        assertEquals(10, authorList.size());
+        verify(repository).findAll(Pageable.ofSize(10));
+    }
+
+    private Page<Book> toPage(List<Book> list, Pageable pageable) {
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), list.size());
+        List<Book> subList = list.subList(start, end);
+        return new PageImpl<>(subList, pageable, list.size());
+    }
+
+    private List<Book> getCompleteList() {
+        List<Book> tmpList = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            tmpList.add(new Book((long) i, "test",100));
+        }
+        return tmpList;
+    }
+
 }

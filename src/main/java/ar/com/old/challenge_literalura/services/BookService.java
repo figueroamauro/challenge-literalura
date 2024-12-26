@@ -1,8 +1,11 @@
 package ar.com.old.challenge_literalura.services;
 
+import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
+import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public class BookService {
@@ -27,6 +30,10 @@ public class BookService {
         }
     }
 
+    public List<Book> getAllBooks() {
+        return repository.findAll(Pageable.ofSize(10)).getContent();
+    }
+
 
     private void validateIfExist(Book book) {
         if (getByTitle(book).isPresent()) {
@@ -43,6 +50,5 @@ public class BookService {
     private Optional<Book> getByTitle(Book book) {
         return repository.findByTitle(book.getTitle());
     }
-
 
 }

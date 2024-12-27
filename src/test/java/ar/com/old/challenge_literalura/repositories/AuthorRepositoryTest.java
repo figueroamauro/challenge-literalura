@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.utils.TestContainerConfig;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +28,7 @@ public class AuthorRepositoryTest {
 
     @BeforeEach
     void init() {
-        expectedAuthor = new Author(1L,"test", 1900, 2000);
+        expectedAuthor = new Author(null,"test", 1900, 2000);
     }
 
 
@@ -76,6 +75,16 @@ public class AuthorRepositoryTest {
         Optional<Author> authorOpt = repository.findById(id);
         assertFalse(authorOpt.isPresent());
     }
+
+    @Test
+    void shouldDeleteAuthor() {
+        Author author = repository.save(expectedAuthor);
+        long id = author.getId();
+        repository.deleteById(id);
+        Optional<Author> result = repository.findById(id);
+        assertTrue(result.isEmpty());
+    }
+
 
     //--------- UTILITY METHODS ----------
     private  void saveAuthors(int count) {

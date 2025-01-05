@@ -6,7 +6,7 @@ public record AuthorDTO(
         @SerializedName("name")
         String name,
         @SerializedName("birth_year")
-        String birthYear,
+        Integer birthYear,
         @SerializedName("death_year")
         Integer deathYear
 ) {

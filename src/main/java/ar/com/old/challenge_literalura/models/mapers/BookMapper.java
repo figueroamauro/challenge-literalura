@@ -2,7 +2,6 @@ package ar.com.old.challenge_literalura.models.mapers;
 
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.models.dto.BookDTO;
-import static ar.com.old.challenge_literalura.models.mapers.AuthorMapper.*;
 
 public class BookMapper {
 

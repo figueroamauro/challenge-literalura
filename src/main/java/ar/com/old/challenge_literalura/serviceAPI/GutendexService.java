@@ -5,19 +5,28 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
+
+import com.google.gson.JsonElement;
+
+import static ar.com.old.challenge_literalura.utils.JsonUtils.responseToJsonArray;
 
 public class GutendexService {
-    HttpClient client;
-    HttpRequest request;
-    public static final String URL = "https://gutendex.com/books/";
+    private final HttpClient client;
+    private static final String URL = "https://gutendex.com/books/";
 
     public GutendexService() {
         this.client = HttpClient.newHttpClient();
 
     }
 
-    public HttpResponse<String> get(String title) {
-        this.request = buildRequest("?search=" + title);
+    public List<JsonElement> getByTitle(String title) {
+        HttpRequest request = buildRequest(URL + "?search=" + title.trim().replace(" ", "+"));
+        HttpResponse<String> response = sendRequest(request);
+        return  responseToJsonArray(response, "results").asList();
+    }
+
+    private HttpResponse<String> sendRequest(HttpRequest request) {
         try {
             return client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException |
@@ -26,9 +35,9 @@ public class GutendexService {
         }
     }
 
-    private static HttpRequest buildRequest(String title) {
+    private static HttpRequest buildRequest(String url) {
         return HttpRequest.newBuilder()
-                       .uri(URI.create(URL +title))
+                       .uri(URI.create(url))
                        .build();
     }
 }

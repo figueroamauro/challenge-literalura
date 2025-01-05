@@ -1,4 +1,4 @@
-package ar.com.old.challenge_literalura.serviceAPI;
+package ar.com.old.challenge_literalura.api;
 
 import com.google.gson.JsonElement;
 

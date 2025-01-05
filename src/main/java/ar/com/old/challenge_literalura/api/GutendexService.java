@@ -1,4 +1,4 @@
-package ar.com.old.challenge_literalura.serviceAPI;
+package ar.com.old.challenge_literalura.api;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,7 +11,7 @@ import com.google.gson.JsonElement;
 
 import static ar.com.old.challenge_literalura.utils.JsonUtils.responseToJsonArray;
 
-public class GutendexService implements ServiceAPI{
+public class GutendexService implements ServiceAPI {
     private final HttpClient client;
     private static final String URL = "https://gutendex.com/books/";
 

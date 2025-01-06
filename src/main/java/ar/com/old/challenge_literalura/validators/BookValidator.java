@@ -1,4 +1,4 @@
-package ar.com.old.challenge_literalura.models.validators;
+package ar.com.old.challenge_literalura.validators;
 
 import ar.com.old.challenge_literalura.models.Author;
 

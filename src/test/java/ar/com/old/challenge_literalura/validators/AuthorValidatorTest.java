@@ -1,4 +1,4 @@
-package ar.com.old.challenge_literalura.models.validators;
+package ar.com.old.challenge_literalura.validators;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -41,10 +41,10 @@ public class AuthorValidatorTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {" 123123123123123123123123123123123",
-                " test test test test test test test test test"})
+        @ValueSource(strings = {" 123123123123123123123123123123123123123123123123123123",
+                " test test test test test test test test test test test test test"})
         void shouldThrowException_whenNameIsLongerThan30Characters(String name) {
-            assertIllegalArgumentException(getValidateName(name), "El nombre no puede superar los 30 caracteres");
+            assertIllegalArgumentException(getValidateName(name), "El nombre no puede superar los 50 caracteres");
         }
 
         @ParameterizedTest

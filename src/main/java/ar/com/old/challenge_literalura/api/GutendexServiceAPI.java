@@ -25,7 +25,7 @@ public class GutendexServiceAPI implements ServiceAPI {
 
     }
 
-    public List<Book> searchByTitle(String title) {
+    public List<Book> fetchByTitle(String title) {
         HttpRequest request = buildRequest(URL + "?search=" + title.trim().replace(" ", "+"));
         HttpResponse<String> response = sendRequest(request);
         JsonArray array = responseToJsonArray(response, "results");

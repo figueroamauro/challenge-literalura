@@ -35,7 +35,7 @@ public class UserInterface {
                 // Buscar libros por su titulo.
                 System.out.println("Ingresa el titulo del libro que deseas buscar.");
                 String title = scanner.nextLine();
-                this.bookList =  service.searchByTitle(title);
+                this.bookList =  service.fetchBookByTitleInApi(title);
                 Menu.printBookList(this.bookList);
 
                 break;

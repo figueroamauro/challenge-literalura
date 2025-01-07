@@ -1,7 +1,6 @@
 package ar.com.old.challenge_literalura.services;
 
 import ar.com.old.challenge_literalura.api.GutendexServiceAPI;
-import ar.com.old.challenge_literalura.api.ServiceAPI;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
 import org.springframework.data.domain.Pageable;
@@ -39,8 +38,8 @@ public class BookService {
         return repository.findAll(Pageable.ofSize(10)).getContent();
     }
 
-    public List<Book> searchByTitle(String title) {
-        return api.searchByTitle(title);
+    public List<Book> fetchBookByTitleInApi(String title) {
+        return api.fetchByTitle(title);
     }
     private void validateIfExist(Book book) {
         if (getByTitle(book).isPresent()) {

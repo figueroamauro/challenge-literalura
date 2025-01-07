@@ -28,9 +28,6 @@ public abstract class AuthorValidator {
 
     public static Integer validateBirthYear(Integer year) {
         if (year != null) {
-            if (year <= 0) {
-                throw new IllegalArgumentException("La fecha de nacimiento no puede ser menor a 0");
-            }
 
             if (year >= LocalDate.now().getYear()) {
                 throw new IllegalArgumentException("La fecha de nacimiento no puede ser mayor que el año actual");
@@ -41,20 +38,15 @@ public abstract class AuthorValidator {
     }
 
     public static Integer validateDeathYear(Integer deathYear, Integer birthYear) {
-        if (deathYear != null) {
-
-            if (deathYear < 0) {
-                throw new IllegalArgumentException("La fecha de fallecimiento no puede ser menor a 0");
-            }
+        if (deathYear != null && birthYear != null) {
 
             if (deathYear >= LocalDate.now().getYear()) {
                 throw new IllegalArgumentException("La fecha de fallecimiento no puede ser mayor que el año actual");
             }
 
-            if (deathYear < birthYear && deathYear != 0) {
-                throw new IllegalArgumentException("La fecha de fallecimiento no puede ser menor que la fecha de nacimiento. Use 0 si el autor aún vive");
-            }
-
+                if (deathYear < birthYear && deathYear != 0) {
+                    throw new IllegalArgumentException("La fecha de fallecimiento no puede ser menor que la fecha de nacimiento. Use 0 si el autor aún vive");
+                }
         }
         return deathYear;
     }

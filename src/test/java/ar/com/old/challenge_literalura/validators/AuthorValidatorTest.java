@@ -68,11 +68,6 @@ public class AuthorValidatorTest {
             assertEquals(values,result);
         }
 
-        @ParameterizedTest
-        @ValueSource(ints = {-1, -10, -1000})
-        void shouldThrowException_whenBirthYearIsNegative(int values) {
-            assertIllegalArgumentException(getValidateBirthYear(values), "La fecha de nacimiento no puede ser menor a 0");
-        }
 
         @ParameterizedTest
         @ValueSource(ints = {2050, 3000, 100000})
@@ -91,12 +86,6 @@ public class AuthorValidatorTest {
             assertEquals(values,result);
         }
 
-        @ParameterizedTest
-        @ValueSource(ints = {-1, -10, -1000})
-        void shouldThrowException_whenDeathYearIsNegative(int values) {
-            assertIllegalArgumentException(getValidateDeathYear(values, 1990),
-                    "La fecha de fallecimiento no puede ser menor a 0");
-        }
 
         @ParameterizedTest
         @ValueSource(ints = {2030,2050,3000})

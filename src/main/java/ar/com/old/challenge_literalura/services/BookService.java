@@ -1,5 +1,6 @@
 package ar.com.old.challenge_literalura.services;
 
+import ar.com.old.challenge_literalura.api.GutendexServiceAPI;
 import ar.com.old.challenge_literalura.api.ServiceAPI;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
@@ -12,9 +13,9 @@ import java.util.Optional;
 @Service
 public class BookService {
     private final BookRepository repository;
-    private final ServiceAPI<Book> api;
+    private final GutendexServiceAPI api;
 
-    public BookService(BookRepository repository, ServiceAPI<Book> api) {
+    public BookService(BookRepository repository, GutendexServiceAPI api) {
         this.repository = repository;
         this.api = api;
     }

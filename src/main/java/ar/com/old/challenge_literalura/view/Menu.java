@@ -1,5 +1,9 @@
 package ar.com.old.challenge_literalura.view;
 
+import ar.com.old.challenge_literalura.models.Book;
+
+import java.util.List;
+
 public class Menu {
 
     public static void printBanner() {
@@ -23,4 +27,10 @@ public class Menu {
         System.out.println("4. Ver libros registrados en tu colección.");
         System.out.println("0. Salir.\n");
     }
-}
+
+    public static void printBookList(List<Book> bookList) {
+        System.out.println("\nLIBROS ENCONTRADOS:\n");
+        bookList.forEach(System.out::println);
+        System.out.println();
+    }
+    }

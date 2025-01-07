@@ -19,7 +19,7 @@ public class BookMapper {
         return book;
     }
 
-    public static  List<Book> bookDtoListToBookList(List<BookDTO> bookDtoList) {
+    public static  List<Book> map(List<BookDTO> bookDtoList) {
         return bookDtoList.stream().map(BookMapper::map).toList();
     }
 

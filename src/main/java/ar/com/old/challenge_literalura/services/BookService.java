@@ -1,5 +1,6 @@
 package ar.com.old.challenge_literalura.services;
 
+import ar.com.old.challenge_literalura.api.ServiceAPI;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
 import org.springframework.data.domain.Pageable;
@@ -11,9 +12,11 @@ import java.util.Optional;
 @Service
 public class BookService {
     private final BookRepository repository;
+    private final ServiceAPI<Book> api;
 
-    public BookService(BookRepository repository) {
+    public BookService(BookRepository repository, ServiceAPI<Book> api) {
         this.repository = repository;
+        this.api = api;
     }
 
     public Book saveBook(Book book) {
@@ -35,7 +38,9 @@ public class BookService {
         return repository.findAll(Pageable.ofSize(10)).getContent();
     }
 
-
+    public List<Book> searchByTitle(String title) {
+        return api.searchByTitle(title);
+    }
     private void validateIfExist(Book book) {
         if (getByTitle(book).isPresent()) {
             throw new IllegalArgumentException("El libro ya se encuentra registrado");
@@ -51,5 +56,6 @@ public class BookService {
     private Optional<Book> getByTitle(Book book) {
         return repository.findByTitle(book.getTitle());
     }
+
 
 }

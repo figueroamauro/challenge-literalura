@@ -1,6 +1,6 @@
 package ar.com.old.challenge_literalura;
 
-import ar.com.old.challenge_literalura.api.GutendexServiceAPI;
+import ar.com.old.challenge_literalura.view.UserInterface;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,7 +11,7 @@ public class ChallengeLiteraluraApplication {
     public static void main(String[] args) {
         SpringApplication.run(ChallengeLiteraluraApplication.class, args);
 
-        GutendexServiceAPI service = new GutendexServiceAPI();
-        System.out.println(service.getByTitle("quijote"));
+        UserInterface userInterface = new UserInterface();
+        userInterface.start();
     }
 }

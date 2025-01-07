@@ -7,23 +7,33 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
-import com.google.gson.JsonElement;
+import ar.com.old.challenge_literalura.models.Book;
+import ar.com.old.challenge_literalura.models.dto.BookDTO;
+import com.google.gson.JsonArray;
 
-import static ar.com.old.challenge_literalura.utils.JsonUtils.responseToJsonArray;
+import static ar.com.old.challenge_literalura.models.mapers.BookMapper.bookDtoListToBookList;
+import static ar.com.old.challenge_literalura.utils.JsonUtils.*;
 
-public class GutendexService implements ServiceAPI {
+public class GutendexServiceAPI implements ServiceAPI {
     private final HttpClient client;
     private static final String URL = "https://gutendex.com/books/";
 
-    public GutendexService() {
+    public GutendexServiceAPI() {
         this.client = HttpClient.newHttpClient();
 
     }
 
-    public List<JsonElement> getByTitle(String title) {
+    public List<Book> getByTitle(String title) {
         HttpRequest request = buildRequest(URL + "?search=" + title.trim().replace(" ", "+"));
         HttpResponse<String> response = sendRequest(request);
-        return  responseToJsonArray(response, "results").asList();
+        JsonArray array = responseToJsonArray(response, "results");
+        return jsonArrayToBookList(array);
+    }
+
+    private List<Book> jsonArrayToBookList(JsonArray array) {
+        List<BookDTO> bookDtoList = jsonArraytoGenericList(array, BookDTO.class);
+        return bookDtoListToBookList(bookDtoList);
+
     }
 
     private HttpResponse<String> sendRequest(HttpRequest request) {

@@ -4,6 +4,6 @@ import com.google.gson.JsonElement;
 
 import java.util.List;
 
-public interface ServiceAPI {
-    List<JsonElement> getByTitle(String title);
+public interface ServiceAPI<T> {
+    List<T> getByTitle(String title);
 }

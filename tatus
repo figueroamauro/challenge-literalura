@@ -1,0 +1,389 @@
+[33mcommit e6e2a589002f2e910d6dc4022e1cac3d1eb6611c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelopment[m[33m)[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Jan 6 16:34:10 2025 -0300
+
+    Add: Add @Service anottation in BookService
+
+[33mcommit 0b159d7ed072da3f26d0c05816042409a5049e8e[m[33m ([m[1;31morigin/development[m[33m)[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Jan 5 23:42:12 2025 -0300
+
+    Refactor: Change type int to Integer in some attributes in Author and AuthorValidator classes.
+
+[33mcommit 60b8b913401cd77acf27305c2d69539947cd0a7a[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Jan 5 17:46:06 2025 -0300
+
+    Add: add banner to Menu class
+
+[33mcommit 363b7909895d3fcce9985fc6905e4ee5f615cf83[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Jan 5 14:11:16 2025 -0300
+
+    Remove: remove unused imports.
+
+[33mcommit 42873e1dc908d9fe6e3eaaca3a396b45b72c0bcf[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Jan 5 14:09:11 2025 -0300
+
+    Add: Add serviceApi interface
+    -add getByTitle method
+
+[33mcommit b833aa89592efe3e221a0a9894b6c3bc6e2c33bf[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Jan 5 14:06:51 2025 -0300
+
+    Add: Add BookMapper and AuthorMapper
+
+[33mcommit 391ca3f3e7f6c501394903b4d71667a899ed2f23[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Jan 5 13:44:28 2025 -0300
+
+    Add: Add BookDto, AuthorDto, JsonUtils and GutendexService
+
+[33mcommit 64f9b4da0361879e9dd367bf2bb591b0c9b40e79[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Dec 29 16:59:30 2024 -0300
+
+    Add: Add get method to gutendex service
+
+[33mcommit 73ca2cbdf57342a524b45b8b4d7bd3f989245eb1[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 28 19:33:27 2024 -0300
+
+    Add: Add test class for gutendex service api
+
+[33mcommit 9fa7e8194412e78332a2fa53e8ca03ddd385c80e[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 21:06:49 2024 -0300
+
+    Test: add test for delete an author by id
+
+[33mcommit 20d5ea0aebe3f700a6db13ea27f738c2e5d23ec6[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 20:59:13 2024 -0300
+
+    Test: Add test for delete a book by id
+
+[33mcommit 2c1ec704386c987d7d4c299023868091a17a51f6[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 20:36:11 2024 -0300
+
+    Test: Add test for get all books with pageable.
+    -Return a maximum of 10 objects
+
+[33mcommit 11779d5afc0871658c4b90f492c93660f6e1e567[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 17:19:46 2024 -0300
+
+    Test: Add validation for find a book by invalid id
+    -Throw IllegalArgumentException
+
+[33mcommit 9c733481b685d9bd6e6bce7e8a951a7d32fd12c2[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 17:01:28 2024 -0300
+
+    Test: Add test for get a book by id in BookService
+
+[33mcommit 3d05068256f041df83d86dedef655ad2861ed10c[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 15:46:12 2024 -0300
+
+    Refactor: Change return type from Book to List<Book> in findAllByLanguage method.
+
+[33mcommit da353e92ad9bbe24e6069779e157264f534c90fd[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 15:38:38 2024 -0300
+
+    Add test for validate duplicated books.
+
+[33mcommit 93fa21833f693f6abc1dd5291e4411e7a047613f[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 14:03:09 2024 -0300
+
+    Test: Add test for save a book in BookService
+
+[33mcommit af233a3f84b1a9bd3893eaf4f0c4808db26bf050[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 13:47:58 2024 -0300
+
+    Test: Add test for validate negative IDs in Author
+
+[33mcommit 9dbe3d4383ae933690acf01e3c4d0d0f81e7b4e8[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 26 13:39:16 2024 -0300
+
+    Remove: Delete test and logic for validate null IDs in Book
+
+[33mcommit ca3665f47ef10918f6b7a462836b134d1a379bbf[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Wed Dec 25 18:56:42 2024 -0300
+
+    Test: Add test to validate failure when fetching author with invalid ID
+
+[33mcommit 2386fc8345fd230d50db9e1152b741132d3551e3[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Wed Dec 25 18:32:23 2024 -0300
+
+    Test: Add test for get an author by id
+
+[33mcommit 44d3a7e7cb7e7dfe69a05778b4e71cd6ce81515a[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Wed Dec 25 18:03:20 2024 -0300
+
+    Test: Add test for get a maximum of 10 authors when getAllAuthors method is called
+
+[33mcommit 982f5b0f7af07b7244965833cd24093e1d9e3db9[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Wed Dec 25 17:15:57 2024 -0300
+
+    Test: Add test for add a null author
+    -Throw IllegalArgumentException
+
+[33mcommit 0f7569c1785f49f51e9fd9f4a8bb23cd09a787e4[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Wed Dec 25 17:04:53 2024 -0300
+
+    Refactor: Add beforeEach method and simplify logic
+
+[33mcommit 89bc6a89168f4fe7f813aded4088f09a6691436b[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 21:13:22 2024 -0300
+
+    Add: Add "AuthorService" and "AuthorServiceTest" classes.
+    -Add method for test save an author
+
+[33mcommit 82520c31557ca8c7c61b02077098fe2c472f0970[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 18:54:49 2024 -0300
+
+    Test: Add test for get all books by language.
+
+[33mcommit 4a5f98f686bbd7c598a534711ad1009678209846[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 18:42:40 2024 -0300
+
+    Add: Add method for add language to list in Book class
+
+[33mcommit 5512c9f445459e3ef5a4a15084afa04ea7fd618a[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 18:37:16 2024 -0300
+
+    Refactor: Move the BeforeEach method to the root class
+    -Now all nested classes can use it
+
+[33mcommit b5f86eacc64c75a9d859acf6f4a63fe761e758ba[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 01:05:47 2024 -0300
+
+    Add: Add toString method in Book and Author classes
+
+[33mcommit e0287dec5e1a7c1ae3a6eabaa6c7fe0fd9f03360[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 00:37:19 2024 -0300
+
+    Add: Add method for add author to list in "Book" class
+
+[33mcommit 19867f8b1a75797e943eb0e5598aee1fc7da16cc[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 00:17:26 2024 -0300
+
+    Test: Add test for get all authors with pageable
+
+[33mcommit a6a2897bbf8347c48776d5d3b42ad718feeb3ddc[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 24 00:14:50 2024 -0300
+
+    Test: Add test for get all authors
+
+[33mcommit 6e1cc0ad3addc200e243052ca33120dc34aed3d4[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 23 19:44:24 2024 -0300
+
+    Test: Add test for get all books with pageable
+
+[33mcommit c2188de4f7ff498ce95b2b8a45f59b16ae9b2515[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 23 19:35:01 2024 -0300
+
+    Test: Add test for get all books by title
+
+[33mcommit bd3bf48469f8192fc52b60c6e7933e1e47c2d66d[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 23 19:29:18 2024 -0300
+
+    Add: Add test for get all books
+
+[33mcommit bf5176f829add98b4f98ea1c43f2d99ca2a7a2a2[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 23 19:11:00 2024 -0300
+
+    Refactor: Add beforeEach method and simplify the logic
+
+[33mcommit d7bfe3e2a01486c2e8ff4c92ce8681fbd3a8660a[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 23 19:08:05 2024 -0300
+
+    Add: Add test for get a book by id
+
+[33mcommit 564a2837bdc6e961d34b1434870a9c40b68ad000[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 23 18:15:46 2024 -0300
+
+    Refactor: Created "TestContainerConfig" class and moved the logic there
+
+[33mcommit 9845ff980d10e78f41182178a06d00490dc761b2[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Dec 22 18:08:14 2024 -0300
+
+    Test: Add BookRepositoryTest and test for save a book.
+
+[33mcommit 428af2a24678c3c6cf42e0a07750baf27e79a9e3[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Dec 22 00:55:17 2024 -0300
+
+    Test: Add test for find Author by id
+
+[33mcommit 32796074418ddd44934eb75cf28f006c9f9b3f10[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 21 21:48:21 2024 -0300
+
+    Refactor: Simplify AuthorRepositoryTest logic
+
+[33mcommit 3536a31760d101508746050b860d7f809d6fbf14[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 21 21:03:39 2024 -0300
+
+    Test: Add test for save and findAll methods in AuthorRepository
+
+[33mcommit 92637ec427786dc57ffd0a3df9c9c1370fb74e51[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 21 20:11:03 2024 -0300
+
+    Chore: Add test-container dependency
+
+[33mcommit de52ae10296c95984e4643a8274afa4dbd2544a7[m
+Author: Mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 21 18:26:49 2024 -0300
+
+    Chore: Remove h2 database dependency and test for this.
+
+[33mcommit b8e80a5e52ed798fb83d15422ab4f7d753793b40[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 21 01:04:57 2024 -0300
+
+    Add: Create AuthorResositoryTest
+
+[33mcommit b6add38954f88de3ba8cea5e32a40887fdfbf008[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 21 00:59:21 2024 -0300
+
+    Chore: Add application-test.properties for h2 database
+    -Test: Add test for h2 database
+
+[33mcommit a6bbfccab0083af857783f72dca9c6fd10a20c6e[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 21 00:43:23 2024 -0300
+
+    Chore: Add h2 database dependency
+
+[33mcommit 50690fa4ec8eddf95814da2f8b4fac140de3fde1[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Fri Dec 20 19:55:39 2024 -0300
+
+    Test: Add test for setters in BookTest
+
+[33mcommit b8433d8d163bfb16160a016155d872939862d167[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 17 00:03:35 2024 -0300
+
+    Test: Add test for "authorList", "languageList" and "downloadCount" attributes.
+
+[33mcommit 888e61269ab120eb5899e2a3b86d869e0b39b415[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 16 20:48:55 2024 -0300
+
+    Test: Add test for "id" and "title" attributes
+
+[33mcommit 63145dec4edea2ac7942534ef280310477eda3c9[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 16 15:48:32 2024 -0300
+
+    Add: Add "BookValidator" and "BookValidatorTest" classes
+
+[33mcommit 7a4828816cbe4f2189242cabf5240c54e89d7749[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Mon Dec 16 15:42:39 2024 -0300
+
+    Add: Add "Book" and "BookTest" classes.
+    -Add test method to test the constructor with valid parameters
+
+[33mcommit ffc408c0d97d4cb1fa089b090f273db2bf4715c6[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Dec 15 23:59:04 2024 -0300
+
+    Refactor: Move tests from AuthorTest to AuthorValidatorTest
+
+[33mcommit 56bc77abb7abe73c33f1de4fd38b3d4dad52c7a0[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sun Dec 15 19:24:03 2024 -0300
+
+    Add: Add AuthorValidator and AuthorValidatorTest
+    - Created test for attribute "name".
+
+[33mcommit b5f402a3835b05170e5c6264c7709182308ad34a[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 14 15:46:52 2024 -0300
+
+    Add: Add TestUtils class
+
+[33mcommit 341585a48c3a0a25356801f24f3d8bbed784f450[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 14 15:35:14 2024 -0300
+
+    Add: Add test for setters in Author
+
+[33mcommit f97539d3e5d085ece86f217c9159711f19a66ca0[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Sat Dec 14 15:13:12 2024 -0300
+
+    Refactor: Changed name to all test
+
+[33mcommit b2f8e108c5409510c9cefdffe7a8dcc26fc9107e[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 12 16:30:33 2024 -0300
+
+    Add: add validation for "deathYear" attribute in "Author"
+
+[33mcommit c0804ad58636a65417f6f98482ea5827b21754a4[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Thu Dec 12 15:28:10 2024 -0300
+
+    Refactor: Change message for exceptions.
+
+[33mcommit a18b4c7f362cf7c33b63b8e1f5798223ecd0d82f[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Wed Dec 11 16:52:49 2024 -0300
+
+    Refactor: Change name to all test methods.
+    -new format = should + when + with
+
+[33mcommit 703fe9226ac23ccad083239a587915f52eabef94[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Wed Dec 11 16:30:56 2024 -0300
+
+    Refactor: Add exception message validation for tests in 'AuthorTest'
+
+[33mcommit 0f7def2f4d535ae0311c77c0e5354e239215a546[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 10 21:09:38 2024 -0300
+
+    Test: Add validation for 'name' attribute in Author
+    -Trim whitespaces from 'name' attribute
+    -Add validation for null or empty 'name'
+
+[33mcommit 36fb328826d4e7126b78ddc7d18a41cc914abc44[m
+Author: mauro <figueroamauro.dev@gmail.com>
+Date:   Tue Dec 10 19:03:58 2024 -0300
+
+    Add new project with springboot, jpa, mysql

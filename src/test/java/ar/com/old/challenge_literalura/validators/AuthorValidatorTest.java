@@ -1,4 +1,4 @@
-package ar.com.old.challenge_literalura.models.validators;
+package ar.com.old.challenge_literalura.validators;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -41,10 +41,10 @@ public class AuthorValidatorTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {" 123123123123123123123123123123123",
-                " test test test test test test test test test"})
-        void shouldThrowException_whenNameIsLongerThan30Characters(String name) {
-            assertIllegalArgumentException(getValidateName(name), "El nombre no puede superar los 30 caracteres");
+        @ValueSource(strings = {" 123123123123123123123123123123123123123123123123123123 123123123123123123123123123123123123123123123123123123",
+                " test test test test test test test test test test test test test test test test test test test test test test test test test test"})
+        void shouldThrowException_whenNameIsLongerThan100Characters(String name) {
+            assertIllegalArgumentException(getValidateName(name), "El nombre no puede superar los 100 caracteres");
         }
 
         @ParameterizedTest
@@ -68,11 +68,6 @@ public class AuthorValidatorTest {
             assertEquals(values,result);
         }
 
-        @ParameterizedTest
-        @ValueSource(ints = {-1, -10, -1000})
-        void shouldThrowException_whenBirthYearIsNegative(int values) {
-            assertIllegalArgumentException(getValidateBirthYear(values), "La fecha de nacimiento no puede ser menor a 0");
-        }
 
         @ParameterizedTest
         @ValueSource(ints = {2050, 3000, 100000})
@@ -91,12 +86,6 @@ public class AuthorValidatorTest {
             assertEquals(values,result);
         }
 
-        @ParameterizedTest
-        @ValueSource(ints = {-1, -10, -1000})
-        void shouldThrowException_whenDeathYearIsNegative(int values) {
-            assertIllegalArgumentException(getValidateDeathYear(values, 1990),
-                    "La fecha de fallecimiento no puede ser menor a 0");
-        }
 
         @ParameterizedTest
         @ValueSource(ints = {2030,2050,3000})

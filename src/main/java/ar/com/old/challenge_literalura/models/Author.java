@@ -2,7 +2,7 @@ package ar.com.old.challenge_literalura.models;
 
 import jakarta.persistence.*;
 
-import static ar.com.old.challenge_literalura.models.validators.AuthorValidator.*;
+import static ar.com.old.challenge_literalura.validators.AuthorValidator.*;
 
 @Entity
 @Table(name = "authors")
@@ -11,10 +11,10 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int birthYear;
-    private int deathYear;
+    private Integer birthYear;
+    private Integer deathYear;
 
-    public Author(Long id, String name, int birthYear, int deathYear) {
+    public Author(Long id, String name, Integer birthYear, Integer deathYear) {
         this.id = validateId(id);
         this.name = validateName(name);
         this.birthYear = validateBirthYear(birthYear);
@@ -36,11 +36,11 @@ public class Author {
         return this.name;
     }
 
-    public int getBirthYear() {
+    public Integer getBirthYear() {
         return this.birthYear;
     }
 
-    public int getDeathYear() {
+    public Integer getDeathYear() {
         return this.deathYear;
     }
 
@@ -48,21 +48,18 @@ public class Author {
         this.name = validateName(name);
     }
 
-    public void setBirthYear(int birthYear) {
+    public void setBirthYear(Integer birthYear) {
         this.birthYear = validateBirthYear(birthYear);
     }
 
-    public void setDeathYear(int deathYear) {
+    public void setDeathYear(Integer deathYear) {
         this.deathYear = validateDeathYear(deathYear, this.birthYear);
     }
 
     @Override
     public String toString() {
-        return "Author{" +
-                       "id=" + id +
-                       ", name='" + name + '\'' +
-                       ", birthYear=" + birthYear +
-                       ", deathYear=" + deathYear +
-                       '}';
+        return      "\n\tNombre: '" + name + '\'' +"\n" +
+                       "\tFecha de Nac: " + birthYear +"\n" +
+                       "\tFecha de Falle: " + deathYear +"\n";
     }
 }

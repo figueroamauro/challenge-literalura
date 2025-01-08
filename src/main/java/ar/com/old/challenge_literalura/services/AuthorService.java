@@ -26,6 +26,10 @@ public class AuthorService {
         return repository.findAll(Pageable.ofSize(10)).getContent();
     }
 
+    public List<Author>getAllLivingAuthorsInAGivenYear(int year) {
+        return repository.findAuthorsAliveInYear(year);
+    }
+
     public Author getAuthorById(Long id) {
         Optional<Author> author = repository.findById(id);
         if (author.isPresent()) {

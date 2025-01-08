@@ -4,6 +4,7 @@ import static ar.com.old.challenge_literalura.utils.TestUtils.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import ar.com.old.challenge_literalura.api.GutendexServiceAPI;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +35,7 @@ public class BookServiceTest {
         bookToSave = new Book(null, "test", 100);
         bookSaved = new Book(1L, "test", 100);
         repository = mock(BookRepository.class);
-        service = new BookService(repository);
+        service = new BookService(repository, new GutendexServiceAPI());
         list = getCompleteList();
     }
 

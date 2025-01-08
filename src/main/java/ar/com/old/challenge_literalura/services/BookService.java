@@ -1,17 +1,22 @@
 package ar.com.old.challenge_literalura.services;
 
+import ar.com.old.challenge_literalura.api.GutendexServiceAPI;
 import ar.com.old.challenge_literalura.models.Book;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BookService {
     private final BookRepository repository;
+    private final GutendexServiceAPI api;
 
-    public BookService(BookRepository repository) {
+    public BookService(BookRepository repository, GutendexServiceAPI api) {
         this.repository = repository;
+        this.api = api;
     }
 
     public Book saveBook(Book book) {
@@ -33,7 +38,13 @@ public class BookService {
         return repository.findAll(Pageable.ofSize(10)).getContent();
     }
 
+    public List<Book>getBookByLanguage(String language) {
+        return repository.findAllByLanguages(language);
+    }
 
+    public List<Book> fetchBookByTitleInApi(String title) {
+        return api.fetchByTitle(title);
+    }
     private void validateIfExist(Book book) {
         if (getByTitle(book).isPresent()) {
             throw new IllegalArgumentException("El libro ya se encuentra registrado");
@@ -50,4 +61,8 @@ public class BookService {
         return repository.findByTitle(book.getTitle());
     }
 
+
+    public void deleteAllBooks() {
+        repository.deleteAll();
+    }
 }

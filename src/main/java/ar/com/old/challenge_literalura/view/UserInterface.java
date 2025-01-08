@@ -59,15 +59,23 @@ public class UserInterface {
                     break;
 
                 case 3:
-                    System.out.println("\nTu colección de libros:\n".toUpperCase());
                     this.bookList = bookService.getAllBooks();
-                    Menu.printList(this.bookList);
+                    if (!bookList.isEmpty()) {
+                        System.out.println("\nTu colección de libros:\n".toUpperCase());
+                        Menu.printList(this.bookList);
+                    } else {
+                        System.out.println("\nTu colección de libros está vacía.\n");
+                    }
                     break;
 
                 case 4:
-                    System.out.println("\nTu colección de autores:\n".toUpperCase());
-                     this.authorList = authorService.getAllAuthors();
-                    Menu.printList(this.authorList);
+                    this.authorList = authorService.getAllAuthors();
+                    if (!authorList.isEmpty()) {
+                        System.out.println("\nTu colección de autores:\n".toUpperCase());
+                        Menu.printList(this.authorList);
+                    } else {
+                        System.out.println("\ntu colección de autores está vacía.\n");
+                    }
                     break;
                 case 5:
                     System.out.println("\nIngresa el idioma del libro que deseas buscar. Ejemplo: es - en - fr - fi - it\n");
@@ -75,32 +83,36 @@ public class UserInterface {
                     this.bookList = bookService.getBookByLanguage(language);
                     if (!bookList.isEmpty()) {
 
-                    System.out.println("\ntus libros encontrados:\n".toUpperCase());
-                    Menu.printList(this.bookList);
-                    }else {
+                        System.out.println("\ntus libros encontrados:\n".toUpperCase());
+                        Menu.printList(this.bookList);
+                    } else {
                         System.out.println("\nNo se encontraron libros en ese idioma.\n");
                     }
                     break;
 
-                    case 6:
-                        System.out.println("\nIngresa el año que deseas buscar:\n");
-                        int year = getUserOption();
-                        if (year != -1) {
-                            authorList = authorService.getAllLivingAuthorsInAGivenYear(year);
-                            if (!authorList.isEmpty()) {
+                case 6:
+                    System.out.println("\nIngresa el año que deseas buscar:\n");
+                    int year = getUserOption();
+                    if (year != -1) {
+                        authorList = authorService.getAllLivingAuthorsInAGivenYear(year);
+                        if (!authorList.isEmpty()) {
 
-                                System.out.println("\ntus autores encontrados:\n".toUpperCase());
-                                Menu.printList(this.authorList);
-                            } else {
-                                System.out.println("\nNo se encontraron autores vivos en ese año.\n");
-                            }
+                            System.out.println("\ntus autores encontrados:\n".toUpperCase());
+                            Menu.printList(this.authorList);
+                        } else {
+                            System.out.println("\nNo se encontraron autores vivos en ese año.\n");
                         }
-                        break;
+                    }
+                    break;
+                case 7:
+                    bookService.deleteAllBooks();
+                    System.out.println("\n Colección eliminada exitosamente.\n");
+                    break;
                 case 0:
                     System.out.println("\n¡GRACIAS POR USAR NUESTRA APLICACIÓN!\n");
                     break;
                 default:
-                    System.out.println("\nOpcion no válida: Debes ingresar un número entre 0 y 6.\n");
+                    System.out.println("\nOpcion no válida: Debes ingresar un número entre 0 y 7.\n");
             }
         } while (option != 0);
     }
@@ -108,7 +120,7 @@ public class UserInterface {
     private void saveBook(Book book) {
         try {
             bookService.saveBook(book);
-            System.out.println("Libro guardado con exito: " + book.getTitle());
+            System.out.println("\nLibro guardado con exito: " + book.getTitle() + "\n");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

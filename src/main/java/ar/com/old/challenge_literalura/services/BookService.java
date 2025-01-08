@@ -62,4 +62,7 @@ public class BookService {
     }
 
 
+    public void deleteAllBooks() {
+        repository.deleteAll();
+    }
 }

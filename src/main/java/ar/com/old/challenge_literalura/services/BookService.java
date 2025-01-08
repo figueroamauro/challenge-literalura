@@ -38,6 +38,10 @@ public class BookService {
         return repository.findAll(Pageable.ofSize(10)).getContent();
     }
 
+    public List<Book>getBookByLanguage(String language) {
+        return repository.findAllByLanguages(language);
+    }
+
     public List<Book> fetchBookByTitleInApi(String title) {
         return api.fetchByTitle(title);
     }

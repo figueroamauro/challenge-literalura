@@ -37,7 +37,7 @@ public class UserInterface {
             option = getUserOption();
             switch (option) {
                 case 1:
-                    System.out.println("Ingresa el titulo, nombre del autor o palabra clave del libro que deseas buscar.");
+                    System.out.println("\nIngresa el titulo, nombre del autor o palabra clave del libro que deseas buscar.\n");
                     String title = scanner.nextLine();
                     this.bookList = bookService.fetchBookByTitleInApi(title);
                     System.out.println("\nLIBROS ENCONTRADOS:\n");
@@ -45,27 +45,42 @@ public class UserInterface {
                     break;
 
                 case 2:
-                    System.out.println("Ingresa el id del libro que deseas agregar a tu colección.\n");
+                    System.out.println("\nIngresa el id del libro que deseas agregar a tu colección.\n");
                     int id = getUserOption();
                     boolean bookFound = findAndSaveBook(id);
                     if (!bookFound) {
-                        System.out.println("El libro no se encuentra en el listado anteriormente buscado.\n");
+                        System.out.println("\nEl libro no se encuentra en el listado anteriormente buscado.\n");
                     }
                     break;
 
                 case 3:
-                    System.out.println("Tu colección de libros:\n");
+                    System.out.println("\nTu colección de libros:\n".toUpperCase());
                     this.bookList = bookService.getAllBooks();
                     Menu.printList(this.bookList);
                     break;
 
                 case 4:
-                    System.out.println("Tu colección de autores:\n");
+                    System.out.println("\nTu colección de autores:\n".toUpperCase());
                      this.authorList = authorService.getAllAuthors();
                     Menu.printList(this.authorList);
                     break;
+                case 5:
+                    System.out.println("\nIngresa el idioma del libro que deseas buscar. Ejemplo: es - en - fr - fi - it\n");
+                    String language = scanner.nextLine();
+                    this.bookList = bookService.getBookByLanguage(language);
+                    if (!bookList.isEmpty()) {
+
+                    System.out.println("\nLIBROS ENCONTRADOS:\n");
+                    Menu.printList(this.bookList);
+                    }else {
+                        System.out.println("\nNo se encontraron libros en ese idioma.\n");
+                    }
+                    break;
+
+                    case 6:
+                        break;
                 case 0:
-                    // Salir.
+                    System.out.println("\n¡GRACIAS POR USAR NUESTRA APLICACIÓN!\n");
                     break;
                 default:
                     System.out.println("Opcion no válida: Debes ingresar un número entre 0 y 6.\n");

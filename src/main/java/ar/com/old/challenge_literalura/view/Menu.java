@@ -10,7 +10,7 @@ public class Menu {
         System.out.println();
         System.out.println("*  *           *  *     *  *  *  *  *  *     *  *  *  *  *  *     *  *  *  *  *           *  *  *  *  *  *     *  *           *  *        *  *     *  *  *  *  *         *  *  *  *  *  *");
         System.out.println("*  *           *  *     *  *  *  *  *  *     *  *  *  *  *  *     *  *  *  *  *  *        *  *  *  *  *  *     *  *           *  *        *  *     *  *  *  *  *  *      *  *  *  *  *  *");
-        System.out.println("*  *           *  *           *  *           *  *                 *  *          *  *      *  *        *  *     *  *           *  *        *  *     *  *          *  *    *  *        *  *")      ;
+        System.out.println("*  *           *  *           *  *           *  *                 *  *          *  *      *  *        *  *     *  *           *  *        *  *     *  *          *  *    *  *        *  *");
         System.out.println("*  *           *  *           *  *           *  *  *  *  *  *     *  *  *  *  *  *        *  *  *  *  *  *     *  *           *  *        *  *     *  *  *  *  *  *      *  *  *  *  *  *");
         System.out.println("*  *           *  *           *  *           *  *  *  *  *  *     *  *  *  *  *           *  *  *  *  *  *     *  *           *  *        *  *     *  *  *  *  *         *  *  *  *  *  *");
         System.out.println("*  *           *  *           *  *           *  *                 *  *       *  *         *  *        *  *     *  *           *  *        *  *     *  *       *  *       *  *        *  *");
@@ -31,8 +31,7 @@ public class Menu {
     }
 
     public static void printBookList(List<Book> bookList) {
-        System.out.println("\nLIBROS ENCONTRADOS:\n");
         bookList.forEach(System.out::println);
         System.out.println();
     }
-    }
+}

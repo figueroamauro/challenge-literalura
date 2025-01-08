@@ -30,14 +30,13 @@ public class UserInterface {
             option = getUserOption();
             switch (option) {
                 case 1:
-                    // Buscar libros en internet.
                     System.out.println("Ingresa el titulo, nombre del autor o palabra clave del libro que deseas buscar.");
                     String title = scanner.nextLine();
                     this.bookList = service.fetchBookByTitleInApi(title);
+                    System.out.println("\nLIBROS ENCONTRADOS:\n");
                     Menu.printBookList(this.bookList);
                     break;
                 case 2:
-                    // Agregar un libro a tu colección.
                     System.out.println("Ingresa el id del libro que deseas agregar a tu colección.\n");
                     int id = getUserOption();
                     boolean bookFound = findAndSaveBook(id);
@@ -46,7 +45,9 @@ public class UserInterface {
                     }
                     break;
                 case 3:
-                    // Agregar un libro a tu colección.
+                    System.out.println("Tu colección de libros:\n");
+                    this.bookList = service.getAllBooks();
+                    Menu.printBookList(this.bookList);  Menu.printBookList(this.bookList);
                     break;
                 case 4:
                     // Eliminar un libro de tu colección.

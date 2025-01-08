@@ -12,14 +12,14 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
     private final List<Author> authorList;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private final List<String> languages;
     private Integer downloadCount;
 

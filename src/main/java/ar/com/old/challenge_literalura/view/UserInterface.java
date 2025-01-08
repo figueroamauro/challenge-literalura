@@ -40,8 +40,13 @@ public class UserInterface {
                     System.out.println("\nIngresa el titulo, nombre del autor o palabra clave del libro que deseas buscar.\n");
                     String title = scanner.nextLine();
                     this.bookList = bookService.fetchBookByTitleInApi(title);
-                    System.out.println("\nLIBROS ENCONTRADOS:\n");
-                    Menu.printList(this.bookList);
+                    if (!bookList.isEmpty()) {
+
+                        System.out.println("\nlibros encontrados:\n".toUpperCase());
+                        Menu.printList(this.bookList);
+                    } else {
+                        System.out.println("\nNo se encontraron libros con los datos ingresados.\n");
+                    }
                     break;
 
                 case 2:
@@ -70,7 +75,7 @@ public class UserInterface {
                     this.bookList = bookService.getBookByLanguage(language);
                     if (!bookList.isEmpty()) {
 
-                    System.out.println("\nLIBROS ENCONTRADOS:\n");
+                    System.out.println("\ntus libros encontrados:\n".toUpperCase());
                     Menu.printList(this.bookList);
                     }else {
                         System.out.println("\nNo se encontraron libros en ese idioma.\n");
@@ -78,12 +83,24 @@ public class UserInterface {
                     break;
 
                     case 6:
+                        System.out.println("\nIngresa el año que deseas buscar:\n");
+                        int year = getUserOption();
+                        if (year != -1) {
+                            authorList = authorService.getAllLivingAuthorsInAGivenYear(year);
+                            if (!authorList.isEmpty()) {
+
+                                System.out.println("\ntus autores encontrados:\n".toUpperCase());
+                                Menu.printList(this.authorList);
+                            } else {
+                                System.out.println("\nNo se encontraron autores vivos en ese año.\n");
+                            }
+                        }
                         break;
                 case 0:
                     System.out.println("\n¡GRACIAS POR USAR NUESTRA APLICACIÓN!\n");
                     break;
                 default:
-                    System.out.println("Opcion no válida: Debes ingresar un número entre 0 y 6.\n");
+                    System.out.println("\nOpcion no válida: Debes ingresar un número entre 0 y 6.\n");
             }
         } while (option != 0);
     }

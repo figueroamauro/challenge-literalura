@@ -19,8 +19,8 @@ public abstract class AuthorValidator {
             throw new IllegalArgumentException("El nombre no puede estar vacío ni ser nulo");
         }
 
-        if (name.length() > 50) {
-            throw new IllegalArgumentException("El nombre no puede superar los 50 caracteres");
+        if (name.length() > 100) {
+            throw new IllegalArgumentException("El nombre no puede superar los 100 caracteres");
         }
 
         return name.trim();

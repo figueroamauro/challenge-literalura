@@ -21,7 +21,7 @@ public class Menu {
     }
 
     public static void printMenu() {
-        System.out.println("¿ QUÉ DESEAS HACER AHORA ?\n");
+        System.out.println("elige una opción y presiona enter:\n".toUpperCase());
         System.out.println("1. Buscar libros en internet.");
         System.out.println("2. Agregar un libro a tu colección.");
         System.out.println("3. Listar todos los libros registrados.");

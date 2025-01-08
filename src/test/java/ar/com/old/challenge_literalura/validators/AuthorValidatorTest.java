@@ -41,10 +41,10 @@ public class AuthorValidatorTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {" 123123123123123123123123123123123123123123123123123123",
-                " test test test test test test test test test test test test test"})
-        void shouldThrowException_whenNameIsLongerThan30Characters(String name) {
-            assertIllegalArgumentException(getValidateName(name), "El nombre no puede superar los 50 caracteres");
+        @ValueSource(strings = {" 123123123123123123123123123123123123123123123123123123 123123123123123123123123123123123123123123123123123123",
+                " test test test test test test test test test test test test test test test test test test test test test test test test test test"})
+        void shouldThrowException_whenNameIsLongerThan100Characters(String name) {
+            assertIllegalArgumentException(getValidateName(name), "El nombre no puede superar los 100 caracteres");
         }
 
         @ParameterizedTest

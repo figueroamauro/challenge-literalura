@@ -75,13 +75,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                       "id=" + id +
-                       ", title='" + title + '\'' +
-                       ", authorList=" + authorList +
-                       ", languages=" + languages +
-                       ", downloadCount=" + downloadCount +
-                       '}';
+        return      "ID: " + id + "\n" +
+                       "Título: '" + title + '\'' + "\n" +
+                       "Cantidad de Descargas: " + downloadCount + "\n" +
+                       "Lenguajes: " + languages + "\n" +
+                       "Autores: " + "\n" + authorList + "\n";
     }
 
     public void addLanguage(String language) {

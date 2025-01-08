@@ -106,7 +106,7 @@ public class UserInterface {
                     break;
                 case 7:
                     bookService.deleteAllBooks();
-                    System.out.println("\n Colección eliminada exitosamente.\n");
+                    System.out.println("\nColección eliminada exitosamente.\n");
                     break;
                 case 0:
                     System.out.println("\n¡GRACIAS POR USAR NUESTRA APLICACIÓN!\n");

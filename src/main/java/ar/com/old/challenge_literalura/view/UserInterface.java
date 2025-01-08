@@ -1,8 +1,11 @@
 package ar.com.old.challenge_literalura.view;
 
 import ar.com.old.challenge_literalura.api.GutendexServiceAPI;
+import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.models.Book;
+import ar.com.old.challenge_literalura.repositories.AuthorRepository;
 import ar.com.old.challenge_literalura.repositories.BookRepository;
+import ar.com.old.challenge_literalura.services.AuthorService;
 import ar.com.old.challenge_literalura.services.BookService;
 
 import java.util.ArrayList;
@@ -12,13 +15,17 @@ import java.util.Scanner;
 
 public class UserInterface {
     private final Scanner scanner;
-    private final BookService service;
+    private final BookService bookService;
+    private final AuthorService authorService;
     private List<Book> bookList;
+    private List<Author> authorList;
 
-    public UserInterface(BookRepository bookRepository) {
+    public UserInterface(BookRepository bookRepository, AuthorRepository authorRepository) {
         this.scanner = new Scanner(System.in);
-        this.service = new BookService(bookRepository, new GutendexServiceAPI());
+        this.bookService = new BookService(bookRepository, new GutendexServiceAPI());
+        this.authorService = new AuthorService(authorRepository);
         this.bookList = new ArrayList<>();
+        this.authorList = new ArrayList<>();
     }
 
     public void start() {
@@ -32,10 +39,11 @@ public class UserInterface {
                 case 1:
                     System.out.println("Ingresa el titulo, nombre del autor o palabra clave del libro que deseas buscar.");
                     String title = scanner.nextLine();
-                    this.bookList = service.fetchBookByTitleInApi(title);
+                    this.bookList = bookService.fetchBookByTitleInApi(title);
                     System.out.println("\nLIBROS ENCONTRADOS:\n");
-                    Menu.printBookList(this.bookList);
+                    Menu.printList(this.bookList);
                     break;
+
                 case 2:
                     System.out.println("Ingresa el id del libro que deseas agregar a tu colección.\n");
                     int id = getUserOption();
@@ -44,13 +52,17 @@ public class UserInterface {
                         System.out.println("El libro no se encuentra en el listado anteriormente buscado.\n");
                     }
                     break;
+
                 case 3:
                     System.out.println("Tu colección de libros:\n");
-                    this.bookList = service.getAllBooks();
-                    Menu.printBookList(this.bookList);  Menu.printBookList(this.bookList);
+                    this.bookList = bookService.getAllBooks();
+                    Menu.printList(this.bookList);
                     break;
+
                 case 4:
-                    // Eliminar un libro de tu colección.
+                    System.out.println("Tu colección de autores:\n");
+                     this.authorList = authorService.getAllAuthors();
+                    Menu.printList(this.authorList);
                     break;
                 case 0:
                     // Salir.
@@ -63,7 +75,7 @@ public class UserInterface {
 
     private void saveBook(Book book) {
         try {
-            service.saveBook(book);
+            bookService.saveBook(book);
             System.out.println("Libro guardado con exito: " + book.getTitle());
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -1,5 +1,6 @@
 package ar.com.old.challenge_literalura.view;
 
+import ar.com.old.challenge_literalura.models.Author;
 import ar.com.old.challenge_literalura.models.Book;
 
 import java.util.List;
@@ -30,8 +31,10 @@ public class Menu {
         System.out.println("0. Salir.\n");
     }
 
-    public static void printBookList(List<Book> bookList) {
-        bookList.forEach(System.out::println);
+    public static void printList(List list) {
+        list.forEach(System.out::println);
         System.out.println();
     }
+
+
 }

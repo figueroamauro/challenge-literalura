@@ -13,48 +13,68 @@ import java.util.Scanner;
 public class UserInterface {
     private final Scanner scanner;
     private final BookService service;
-    private final BookRepository bookRepository;
     private List<Book> bookList;
 
     public UserInterface(BookRepository bookRepository) {
         this.scanner = new Scanner(System.in);
-        this.bookRepository = bookRepository;
         this.service = new BookService(bookRepository, new GutendexServiceAPI());
         this.bookList = new ArrayList<>();
     }
 
     public void start() {
         Menu.printBanner();
-        int option = -1;
+        int option;
         do
         {
-        Menu.printMenu();
+            Menu.printMenu();
             option = getUserOption();
             switch (option) {
-            case 1:
-                // Buscar libros por su titulo.
-                System.out.println("Ingresa el titulo del libro que deseas buscar.");
-                String title = scanner.nextLine();
-                this.bookList =  service.fetchBookByTitleInApi(title);
-                Menu.printBookList(this.bookList);
+                case 1:
+                    // Buscar libros en internet.
+                    System.out.println("Ingresa el titulo, nombre del autor o palabra clave del libro que deseas buscar.");
+                    String title = scanner.nextLine();
+                    this.bookList = service.fetchBookByTitleInApi(title);
+                    Menu.printBookList(this.bookList);
+                    break;
+                case 2:
+                    // Agregar un libro a tu colección.
+                    System.out.println("Ingresa el id del libro que deseas agregar a tu colección.\n");
+                    int id = getUserOption();
+                    boolean bookFound = false;
 
-                break;
-            case 2:
-                // Ver libros registrados en tu colección.
-                break;
-            case 3:
-                // Agregar un libro a tu colección.
-                break;
-            case 4:
-                // Eliminar un libro de tu colección.
-                break;
-            case 0:
-                // Salir.
-                break;
+                    for (Book current : bookList) {
+                        if (current.getId() == id) {
+                            saveBook(current);
+                            bookFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!bookFound) {
+                        System.out.println("El libro no se encuentra en el listado anteriormente buscado.\n");
+                    }
+                    break;
+                case 3:
+                    // Agregar un libro a tu colección.
+                    break;
+                case 4:
+                    // Eliminar un libro de tu colección.
+                    break;
+                case 0:
+                    // Salir.
+                    break;
                 default:
-                    System.out.println("Opcion no válida: Debes ingresar un número entre 0 y 4.\n");
-        }
+                    System.out.println("Opcion no válida: Debes ingresar un número entre 0 y 6.\n");
+            }
         } while (option != 0);
+    }
+
+    private void saveBook(Book book) {
+        try {
+            service.saveBook(book);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private int getUserOption() {
@@ -64,6 +84,7 @@ public class UserInterface {
             scanner.nextLine();
         } catch (InputMismatchException e) {
             option = -1;
+
             scanner.nextLine();
         }
         return option;

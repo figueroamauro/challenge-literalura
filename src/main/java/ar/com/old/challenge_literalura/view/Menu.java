@@ -20,11 +20,13 @@ public class Menu {
     }
 
     public static void printMenu() {
-        System.out.println("¿QUÉ DESEAS HACER AHORA?\n");
-        System.out.println("1. Buscar libros por su titulo.");
+        System.out.println("¿ QUÉ DESEAS HACER AHORA ?\n");
+        System.out.println("1. Buscar libros en internet.");
         System.out.println("2. Agregar un libro a tu colección.");
-        System.out.println("3. Eliminar un libro de tu colección.");
-        System.out.println("4. Ver libros registrados en tu colección.");
+        System.out.println("3. Listar todos los libros registrados.");
+        System.out.println("4. Listar todos los autores registrados");
+        System.out.println("5. Listar libros por idioma.");
+        System.out.println("6. Listar autores vivos en un determinado año");
         System.out.println("0. Salir.\n");
     }
 

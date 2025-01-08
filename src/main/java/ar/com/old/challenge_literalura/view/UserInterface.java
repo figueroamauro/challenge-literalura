@@ -40,16 +40,7 @@ public class UserInterface {
                     // Agregar un libro a tu colección.
                     System.out.println("Ingresa el id del libro que deseas agregar a tu colección.\n");
                     int id = getUserOption();
-                    boolean bookFound = false;
-
-                    for (Book current : bookList) {
-                        if (current.getId() == id) {
-                            saveBook(current);
-                            bookFound = true;
-                            break;
-                        }
-                    }
-
+                    boolean bookFound = findAndSaveBook(id);
                     if (!bookFound) {
                         System.out.println("El libro no se encuentra en el listado anteriormente buscado.\n");
                     }
@@ -72,6 +63,7 @@ public class UserInterface {
     private void saveBook(Book book) {
         try {
             service.saveBook(book);
+            System.out.println("Libro guardado con exito: " + book.getTitle());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -88,5 +80,18 @@ public class UserInterface {
             scanner.nextLine();
         }
         return option;
+    }
+
+    private boolean findAndSaveBook(int id) {
+        boolean bookFound = false;
+
+        for (Book current : bookList) {
+            if (current.getId() == id) {
+                saveBook(current);
+                bookFound = true;
+                break;
+            }
+        }
+        return bookFound;
     }
 }
